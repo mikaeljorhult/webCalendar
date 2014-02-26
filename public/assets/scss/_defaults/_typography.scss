@@ -1,0 +1,62 @@
+@include establish-baseline;
+
+a {
+	color: $brand-color-1;
+	text-decoration: none;
+}
+
+h1, .alpha {
+	@include adjust-font-size-to($font-bigger * 1px);
+	line-height: 1;
+}
+
+h2, .beta {
+	@include adjust-font-size-to($font-larger * 1px);
+}
+
+h3, .gamma {
+	@include adjust-font-size-to($font-large * 1px);
+}
+
+h4, .delta {
+	@include adjust-font-size-to($font-medium * 1px);
+}
+
+h5, .epsilon {
+	@include adjust-font-size-to($font-size * 1px);
+}
+
+h6, .zeta {
+	@include adjust-font-size-to($font-small-uppercase * 1px);
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.2em;
+	color: $brand-color-2;
+	font-weight: 100;
+	
+	a {
+		color: inherit;
+		
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.eta {
+	font-size: em($font-small, $font-size);
+	line-height: em(21, $font-small);
+
+}
+.theta {
+	font-size: em($font-smaller, $font-size);
+	line-height: em(16, $font-smaller);
+}

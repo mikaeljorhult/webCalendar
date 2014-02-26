@@ -1,0 +1,92 @@
+.filters {
+	@include margin-trailer( 1 );
+	
+	label {
+		display: inline-block;
+	}
+}
+
+.modules {
+	padding-left: 0;
+	list-style: none;
+	
+	label {
+		cursor: pointer;
+		
+		&:before {
+			content: '';
+			width: 0.5em;
+			height: 0.5em;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 0.25em;
+			background-color: #ccc;
+			
+			@include border-radius( 0.5em );
+		}
+	}
+	
+	li {
+		input {
+			display: none;
+		}
+	}
+	
+	.module-1:checked + label:before { background-color: $module-color-1; }
+	.module-2:checked + label:before { background-color: $module-color-2; }
+	.module-3:checked + label:before { background-color: $module-color-3; }
+	.module-4:checked + label:before { background-color: $module-color-4; }
+	.module-5:checked + label:before { background-color: $module-color-5; }
+	.module-6:checked + label:before { background-color: $module-color-6; }
+}
+
+.list-weeks {
+	&,
+	& ul {
+		padding-left: 0;
+		list-style: none;	
+	}
+}
+
+.list-events {
+	@include margin-trailer( 1 );
+}
+
+.event {
+	margin-bottom: 0.4em;
+	padding: 0.4em;
+	background-color: #eee;
+}
+
+.module-1 { background-color: lighten( $module-color-1, 42% ); }
+.module-2 { background-color: lighten( $module-color-2, 35% ); }
+.module-3 { background-color: lighten( $module-color-3, 30% ); }
+.module-4 { background-color: lighten( $module-color-4, 35% ); }
+.module-5 { background-color: lighten( $module-color-5, 35% ); }
+.module-6 { background-color: lighten( $module-color-6, 30% ); }
+
+.flexbox,
+.flexboxlegacy {
+	.event-block {
+		width: 100%;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -webkit-flexbox;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		
+		.event {
+			-webkit-box-flex: 1;
+			-moz-box-flex: 1;
+			-webkit-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+			margin-left: 1.6em;
+			
+			&:first-child {
+				margin-left: 0;	
+			}
+		}
+	}
+}
