@@ -32,7 +32,7 @@
 				<li>{{ HTML::link( URL::route( 'admin.user.index' ), 'Användare' ) }}</li>
 				<li>{{ HTML::link( 'logout', 'Logga ut' ) }}</li>
 			@else
-				<li>{{ HTML::link( URL::route( 'show-login' ), 'Logga in' ) }}</li>
+				<li>{{ HTML::link( URL::route( 'login' ), 'Logga in' ) }}</li>
 			@endif
 		</ul>
 	</header>
