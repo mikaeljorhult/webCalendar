@@ -3,8 +3,18 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
-
+/**
+ * Database model for User object.
+ */
+class User extends BaseModel implements UserInterface, RemindableInterface {
+	public $timestamps = false;
+	protected $fillable = [ 'username', 'password', 'email' ];
+	public static $rules = [
+		'username' => [ 'required' ],
+		'password' => [ 'required' ],
+		'email' => [ 'required', 'unique:users' ]
+	];
+	
 	/**
 	 * The database table used by the model.
 	 *
@@ -17,15 +27,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
-
+	protected $hidden = array( 'password' );
+	
 	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
 	 */
-	public function getAuthIdentifier()
-	{
+	public function getAuthIdentifier() {
 		return $this->getKey();
 	}
 
@@ -34,8 +43,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getAuthPassword()
-	{
+	public function getAuthPassword() {
 		return $this->password;
 	}
 
@@ -44,8 +52,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getReminderEmail()
-	{
+	public function getReminderEmail() {
 		return $this->email;
 	}
 
