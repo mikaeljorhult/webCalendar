@@ -20,14 +20,10 @@ class SessionsController extends \BaseController {
 	public function store() {
 		$user = [
 			'username' => Input::get( 'username' ),
-			'password' => Input::get( 'password' ),
-			'suspended' => 0
+			'password' => Input::get( 'password' )
 		];
 		
 		if ( Auth::attempt( $user, true ) ) {
-			Auth::user()->logged_in_at = new DateTime;
-			Auth::user()->save();
-			
 			return Redirect::intended( '/' );
 		}
 		
