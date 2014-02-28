@@ -7,11 +7,14 @@ class DatabaseSeeder extends Seeder {
 	 *
 	 * @return void
 	 */
-	public function run()
-	{
+	public function run() {
 		Eloquent::unguard();
-
-		// $this->call('UserTableSeeder');
+		
+		// Empty all tables.
+		DB::table( 'users' )->delete();
+		
+		// Populate tables.
+		$this->call( 'UserTableSeeder' );
 	}
 
 }
