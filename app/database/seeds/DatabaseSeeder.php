@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		
 		// Populate tables.
 		$this->call( 'UsersTableSeeder' );
+		$this->call( 'CoursesTableSeeder' );
 	}
 
 }

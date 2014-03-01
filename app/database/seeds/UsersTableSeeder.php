@@ -1,6 +1,6 @@
 <?php
 
-class UserTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder {
 	public function run() {
 		DB::table( 'users' )->insert( array(
 			'username' => 'mjr',
