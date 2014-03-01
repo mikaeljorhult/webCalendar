@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends BaseController {
+class UsersController extends BaseController {
 	protected $layout = '_layouts.default';
 	
 	/**
@@ -11,7 +11,7 @@ class UserController extends BaseController {
 	public function index() {
 		$users = User::all();
 		
-		$this->layout->content = View::make( 'user.index' )
+		$this->layout->content = View::make( 'users.index' )
 			->with( 'users', $users );
 	}
 	
@@ -48,7 +48,7 @@ class UserController extends BaseController {
 	 * @return Response
 	 */
 	public function create() {
-		$this->layout->content = View::make( 'user.create' );
+		$this->layout->content = View::make( 'users.create' );
 	}
 
 	/**
@@ -60,7 +60,7 @@ class UserController extends BaseController {
 		$user = new User;
 		
 		$user->username = Input::get( 'username' );
-		$user->password = Hash::make( Input::get( 'password' ) );
+		$user->password = Input::get( 'password' );
 		$user->email = Input::get( 'email' );
 		
 		if ( $user->validate() ) {
@@ -69,7 +69,7 @@ class UserController extends BaseController {
 			return Redirect::back()->withInput( Input::except( 'password' ) );
 		}
 		
-		return Redirect::route( 'admin.user.index' );
+		return Redirect::route( 'admin.users.index' );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class UserController extends BaseController {
 	public function show( $id ) {
 		$user = User::find( $id );
 		
-		$this->layout->content = View::make( 'user.show' )
+		$this->layout->content = View::make( 'users.show' )
 			->with( 'user', $user );
 	}
 
@@ -94,7 +94,7 @@ class UserController extends BaseController {
 	public function edit( $id ) {
 		$user = User::find( $id );
 		
-		$this->layout->content = View::make( 'user.edit' )
+		$this->layout->content = View::make( 'users.edit' )
 			->with( 'user', $user );
 	}
 
@@ -111,7 +111,7 @@ class UserController extends BaseController {
 		$user->email = Input::get( 'email' );
 		
 		if ( Input::has( 'password' ) ) {
-			$user->password = Hash::make( Input::get( 'password' ) );
+			$user->password = Input::get( 'password' );
 		}
 		
 		if ( $user->validate() ) {
@@ -120,7 +120,7 @@ class UserController extends BaseController {
 			return Redirect::back()->withInput( Input::except( 'password' ) );
 		}
 		
-		return Redirect::route( 'admin.user.index' );
+		return Redirect::route( 'admin.users.index' );
 	}
 
 	/**
@@ -136,6 +136,6 @@ class UserController extends BaseController {
 			$user->delete();
 		}
 		
-		return Redirect::route( 'admin.user.index' );
+		return Redirect::route( 'admin.users.index' );
 	}
 }

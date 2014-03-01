@@ -2,7 +2,7 @@
 
 <h2>Skapa kurs</h2>
 
-{{ Form::open( [ 'route' => 'admin.course.store', 'method' => 'POST' ] ) }}
+{{ Form::open( [ 'route' => 'admin.courses.store', 'method' => 'POST' ] ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'name', 'Namn' ) }}

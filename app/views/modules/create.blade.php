@@ -2,16 +2,11 @@
 
 <h2>Skapa delkurs</h2>
 
-{{ Form::open( [ 'route' => 'admin.module.store', 'method' => 'POST' ] ) }}
+{{ Form::open( [ 'route' => 'admin.modules.store', 'method' => 'POST' ] ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'name', 'Namn' ) }}
 			{{ Form::text( 'name', '', [ 'placeholder' => 'Namn' ] ) }}
-		</li>
-		
-		<li>
-			{{ Form::label( 'short_name', 'Kort namn' ) }}
-			{{ Form::text( 'short_name', '', [ 'placeholder' => 'Kort namn' ] ) }}
 		</li>
 		
 		<li>

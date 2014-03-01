@@ -2,7 +2,7 @@
 
 <h2>Skapa lektion</h2>
 
-{{ Form::open( array( 'route' => 'lesson.store', 'method' => 'POST' ) ) }}
+{{ Form::open( array( 'route' => 'lessons.store', 'method' => 'POST' ) ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'title', 'Titel' ) }}

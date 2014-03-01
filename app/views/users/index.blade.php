@@ -14,12 +14,12 @@
 		@if ( $users )
 			@foreach ( $users as $user )
 				<tr>
-					<td>{{ HTML::link( URL::route( 'admin.user.show', $user->id ), $user->username ) }}</td>
+					<td>{{ HTML::link( URL::route( 'admin.users.show', $user->id ), $user->username ) }}</td>
 					<td>{{ $user->email }}</td>
-					<td>{{ HTML::link( URL::route( 'admin.user.edit', $user->id ), 'Redigera' ) }}</td>
+					<td>{{ HTML::link( URL::route( 'admin.users.edit', $user->id ), 'Redigera' ) }}</td>
 					<td>
 						@if ( $user->id != Auth::user()->id )
-							{{ Form::open( [ 'route' => [ 'admin.user.destroy', $user->id ], 'method' => 'DELETE' ] ) }}
+							{{ Form::open( [ 'route' => [ 'admin.users.destroy', $user->id ], 'method' => 'DELETE' ] ) }}
 							{{ Form::submit( 'Radera', [ 'class' => 'no-button' ] ) }}
 							{{ Form::close() }}
 						@else
@@ -35,7 +35,7 @@
 </table>
 
 <p>
-	{{ HTML::link( URL::route( 'admin.user.create' ), 'Skapa ny användare', [ 'class' => 'button' ] ) }}
+	{{ HTML::link( URL::route( 'admin.users.create' ), 'Skapa ny användare', [ 'class' => 'button' ] ) }}
 </p>
 
 @stop

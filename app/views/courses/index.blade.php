@@ -16,13 +16,13 @@
 		@if ( $courses )
 			@foreach ( $courses as $course )
 				<tr>
-					<td>{{ HTML::link( URL::route( 'admin.course.show', $course->id ), $course->name ) }}</td>
+					<td>{{ HTML::link( URL::route( 'admin.courseS.show', $course->id ), $course->name ) }}</td>
 					<td>{{ $course->code }}</td>
 					<td>{{ $course->start_date }}</td>
 					<td>{{ $course->end_date }}</td>
-					<td>{{ HTML::link( URL::route( 'admin.course.edit', $course->id ), 'Redigera' ) }}</td>
+					<td>{{ HTML::link( URL::route( 'admin.courseS.edit', $course->id ), 'Redigera' ) }}</td>
 					<td>
-						{{ Form::open( [ 'route' => [ 'admin.course.destroy', $course->id ], 'method' => 'DELETE' ] ) }}
+						{{ Form::open( [ 'route' => [ 'admin.courseS.destroy', $course->id ], 'method' => 'DELETE' ] ) }}
 						{{ Form::submit( 'Radera', [ 'class' => 'no-button' ] ) }}
 						{{ Form::close() }}
 					</td>
@@ -35,7 +35,7 @@
 </table>
 
 <p>
-	{{ HTML::link( URL::route( 'admin.course.create' ), 'Skapa ny kurs', [ 'class' => 'button' ] ) }}
+	{{ HTML::link( URL::route( 'admin.courses.create' ), 'Skapa ny kurs', [ 'class' => 'button' ] ) }}
 </p>
 
 @stop

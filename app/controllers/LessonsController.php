@@ -1,6 +1,6 @@
 <?php
 
-class LessonController extends \BaseController {
+class LessonsController extends \BaseController {
 	protected $layout = '_layouts.default';
 	
 	/**
@@ -11,7 +11,7 @@ class LessonController extends \BaseController {
 	public function index() {
 		$lessons = Lesson::all();
 		
-		$this->layout->content = View::make( 'lesson.index' )
+		$this->layout->content = View::make( 'lessons.index' )
 			->with( 'lessons', $lessons );
 	}
 	
@@ -21,7 +21,7 @@ class LessonController extends \BaseController {
 	 * @return Response
 	 */
 	public function create() {
-		$this->layout->content = View::make( 'lesson.create' );
+		$this->layout->content = View::make( 'lessons.create' );
 	}
 	
 	/**
@@ -41,7 +41,7 @@ class LessonController extends \BaseController {
 		
 		Module::insert( $module );
 		
-		return Redirect::route( 'module.index' );
+		return Redirect::route( 'modules.index' );
 	}
 	
 	/**

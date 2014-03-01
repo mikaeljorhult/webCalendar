@@ -1,6 +1,6 @@
 <?php
 
-class ModuleController extends \BaseController {
+class ModulesController extends \BaseController {
 	protected $layout = '_layouts.default';
 	
 	/**
@@ -11,7 +11,7 @@ class ModuleController extends \BaseController {
 	public function index() {
 		$modules = Module::all();
 		
-		$this->layout->content = View::make( 'module.index' )
+		$this->layout->content = View::make( 'modules.index' )
 			->with( 'modules', $modules );
 	}
 	
@@ -23,7 +23,7 @@ class ModuleController extends \BaseController {
 	public function create() {
 		$courses = Course::all();
 		
-		$this->layout->content = View::make( 'module.create' )
+		$this->layout->content = View::make( 'modules.create' )
 			->with( 'courses', $courses );
 	}
 	
@@ -39,7 +39,6 @@ class ModuleController extends \BaseController {
 		$module->name = Input::get( 'name' );
 		$module->short_name = Input::get( 'short_name' );
 		$module->calendar = Input::get( 'calendar' );
-		$module->created_at = new DateTime;
 		
 		if ( $module->validate() ) {
 			$module->save();
@@ -47,7 +46,7 @@ class ModuleController extends \BaseController {
 			return Redirect::back()->withInput();
 		}
 		
-		return Redirect::route( 'admin.module.index' );
+		return Redirect::route( 'admin.modules.index' );
 	}
 	
 	/**
@@ -62,7 +61,7 @@ class ModuleController extends \BaseController {
 		if ( Request::ajax() ) {
 			return $module;
 		} else {
-			$this->layout->content = View::make( 'module.single', array( 'module' => $module ) );
+			$this->layout->content = View::make( 'modules.single', array( 'module' => $module ) );
 		}
 	}
 	
@@ -76,7 +75,7 @@ class ModuleController extends \BaseController {
 		$module = Module::find( $id );
 		$courses = Course::all();
 		
-		$this->layout->content = View::make( 'module.edit' )
+		$this->layout->content = View::make( 'modules.edit' )
 			->with( 'module', $module )
 			->with( 'courses', $courses );
 	}
@@ -94,7 +93,6 @@ class ModuleController extends \BaseController {
 		$module->name = Input::get( 'name' );
 		$module->short_name = Input::get( 'short_name' );
 		$module->calendar = Input::get( 'calendar' );
-		$module->created_at = new DateTime;
 		
 		if ( $module->validate() ) {
 			$module->save();
@@ -102,7 +100,7 @@ class ModuleController extends \BaseController {
 			return Redirect::back()->withInput();
 		}
 		
-		return Redirect::route( 'admin.module.index' );
+		return Redirect::route( 'admin.modules.index' );
 	}
 	
 	/**
@@ -115,7 +113,7 @@ class ModuleController extends \BaseController {
 		$module = Module::find( $id );
 		$module->delete();
 		
-		return Redirect::route( 'admin.module.index' );
+		return Redirect::route( 'admin.modules.index' );
 	}
 	
 }

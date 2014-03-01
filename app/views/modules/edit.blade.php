@@ -2,7 +2,7 @@
 
 <h2>Redigera {{ $module->title }}</h2>
 
-{{ Form::model( $module, [ 'route' => [ 'admin.module.update', $module->id ], 'method' => 'PUT' ] ) }}
+{{ Form::model( $module, [ 'route' => [ 'admin.modules.update', $module->id ], 'method' => 'PUT' ] ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'name', 'Namn' ) }}

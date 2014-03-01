@@ -2,7 +2,7 @@
 
 <h2>Skapa användare</h2>
 
-{{ Form::open( array( 'route' => 'admin.user.store', 'method' => 'POST' ) ) }}
+{{ Form::open( array( 'route' => 'admin.users.store', 'method' => 'POST' ) ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'username', 'Användarnamn' ) }}

@@ -27,9 +27,9 @@
 		
 		<ul class="nav">
 			@if ( Auth::check() )
-				<li>{{ HTML::link( URL::route( 'admin.course.index' ), 'Kurser' ) }}</li>
-				<li>{{ HTML::link( URL::route( 'admin.module.index' ), 'Delkurser' ) }}</li>
-				<li>{{ HTML::link( URL::route( 'admin.user.index' ), 'Användare' ) }}</li>
+				<li>{{ HTML::link( URL::route( 'admin.courses.index' ), 'Kurser' ) }}</li>
+				<li>{{ HTML::link( URL::route( 'admin.modules.index' ), 'Delkurser' ) }}</li>
+				<li>{{ HTML::link( URL::route( 'admin.users.index' ), 'Användare' ) }}</li>
 				<li>{{ HTML::link( 'logout', 'Logga ut' ) }}</li>
 			@else
 				<li>{{ HTML::link( URL::route( 'login' ), 'Logga in' ) }}</li>

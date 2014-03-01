@@ -2,7 +2,7 @@
 
 <h2>Redigera {{ $lesson->title }}</h2>
 
-{{ Form::model( $lesson, [ 'route' => [ 'lesson.update', $lesson->id ], 'method' => 'PUT' ] ) }}
+{{ Form::model( $lesson, [ 'route' => [ 'lessons.update', $lesson->id ], 'method' => 'PUT' ] ) }}
 	<ul>
 		<li>
 			{{ Form::label( 'title', 'Titel' ) }}

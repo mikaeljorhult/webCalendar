@@ -1,6 +1,6 @@
 <?php
 
-class CourseController extends \BaseController {
+class CoursesController extends \BaseController {
 	protected $layout = '_layouts.default';
 	
 	/**
@@ -11,7 +11,7 @@ class CourseController extends \BaseController {
 	public function index() {
 		$courses = Course::all();
 		
-		$this->layout->content = View::make( 'course.index' )
+		$this->layout->content = View::make( 'courses.index' )
 			->with( 'courses', $courses );
 	}
 	
@@ -21,7 +21,7 @@ class CourseController extends \BaseController {
 	 * @return Response
 	 */
 	public function create() {
-		$this->layout->content = View::make( 'course.create' );
+		$this->layout->content = View::make( 'courses.create' );
 	}
 	
 	/**
@@ -44,7 +44,7 @@ class CourseController extends \BaseController {
 			return Redirect::back()->withInput();
 		}
 		
-		return Redirect::route( 'admin.course.index' );
+		return Redirect::route( 'admin.courses.index' );
 	}
 	
 	/**
@@ -66,7 +66,7 @@ class CourseController extends \BaseController {
 			if ( Request::ajax() ) {
 				return $course;
 			} else {
-				$this->layout->content = View::make( 'course.schedule' )
+				$this->layout->content = View::make( 'courses.schedule' )
 					->with( 'course', $course )
 					->with( 'modules', $modules )
 					->with( 'lessons', $lessons );
@@ -94,7 +94,7 @@ class CourseController extends \BaseController {
 			if ( Request::ajax() ) {
 				return $course;
 			} else {
-				$this->layout->content = View::make( 'course.view' )
+				$this->layout->content = View::make( 'courses.view' )
 					->with( 'course', $course )
 					->with( 'modules', $modules )
 					->with( 'lessons', $lessons );
@@ -113,7 +113,7 @@ class CourseController extends \BaseController {
 	public function edit( $id ) {
 		$course = Course::find( $id );
 		
-		$this->layout->content = View::make( 'course.edit' )
+		$this->layout->content = View::make( 'courses.edit' )
 			->with( 'course', $course );
 	}
 	
@@ -137,7 +137,7 @@ class CourseController extends \BaseController {
 			return Redirect::back()->withInput();
 		}
 		
-		return Redirect::route( 'admin.course.index' );
+		return Redirect::route( 'admin.courses.index' );
 	}
 	
 	/**
@@ -150,6 +150,6 @@ class CourseController extends \BaseController {
 		$course = Course::find( $id );
 		$course->delete();
 		
-		return Redirect::route( 'admin.course.index' );
+		return Redirect::route( 'admin.courses.index' );
 	}
 }

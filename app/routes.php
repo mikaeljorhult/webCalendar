@@ -13,23 +13,27 @@ Route::get( 'logout', [ 'as' => 'logout', 'uses' => 'SessionsController@destroy'
 Route::resource( 'sessions', 'SessionsController', [ 'only' => [ 'create', 'destroy', 'store' ] ] );
 
 /*
- * Update courses.
- */
-Route::get( 'update', array( 'as' => 'update', 'uses' => 'AppController@update', 'before' => 'auth' ) );
-Route::get( 'update/{id}', array( 'as' => 'update.course', 'uses' => 'AppController@update', 'before' => 'auth' ) );
-
-/*
  * Administration Panel.
  */
-Route::group( array( 'prefix' => 'admin' ), function() {
+Route::group( array( 'prefix' => 'admin', 'before' => 'auth' ), function() {
 	Route::get( '/', array( 'as' => 'admin', 'uses' => 'AppController@admin' ) );
-	Route::resource( 'course', 'CourseController' );
-	Route::resource( 'module', 'ModuleController' );
-	Route::resource( 'lesson', 'LessonController' );
-	Route::resource( 'user', 'UserController' );
+	
+	/*
+	 * Resources.
+	 */
+	Route::resource( 'courses', 'CoursesController' );
+	Route::resource( 'modules', 'ModulesController' );
+	Route::resource( 'lessons', 'LessonsController' );
+	Route::resource( 'users', 'UsersController' );
+	
+	/*
+	 * Update courses.
+	 */
+	Route::get( 'update', array( 'as' => 'update', 'uses' => 'AppController@update' ) );
+	Route::get( 'update/{id}', array( 'as' => 'update.course', 'uses' => 'AppController@update' ) );
 } );
 
 /*
  * Display course schedule.
  */
-Route::get( 'schedule/{code}', array( 'uses' => 'CourseController@display' ) );
+Route::get( 'schedule/{code}', array( 'uses' => 'CoursesController@display' ) );
