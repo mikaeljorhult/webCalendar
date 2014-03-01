@@ -8,8 +8,7 @@
 		public static $rules = [
 			'course_id' => [ 'required', 'exists:courses,id' ],
 			'name' => [ 'required' ],
-			'short_name' => [ 'required' ],
-			'calendar' => [ 'required', 'active_url' ]
+			'calendar' => [ 'required' ]
 		];
 		
 		/**
