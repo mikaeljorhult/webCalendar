@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder {
 		DB::table( 'users' )->delete();
 		
 		// Populate tables.
-		$this->call( 'UserTableSeeder' );
+		$this->call( 'UsersTableSeeder' );
 	}
 
 }
