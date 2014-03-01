@@ -55,5 +55,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	public function getReminderEmail() {
 		return $this->email;
 	}
-
+	
+	public function setPasswordAttribute( $value ) {
+		$this->attributes[ 'password' ] = Hash::make( $value );
+	}
 }
