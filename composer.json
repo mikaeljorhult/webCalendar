@@ -2,12 +2,10 @@
 	"name": "mikaeljorhult/webCalendar2",
 	"description": "Fetch and display multiple Google calendars as one.",
 	"keywords": ["calendar", "google"],
-	"license": {
-		"type": "MIT",
-		"url": "http://mikaeljorhult.mit-license.org/"
-	},
+	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*"
+		"laravel/framework": "4.1.*",
+		"way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
