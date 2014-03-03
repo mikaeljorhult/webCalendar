@@ -16,8 +16,8 @@
 		 * 
 		 * @return Course
 		 */
-		public function course() {
-			return $this->belongsTo( 'Course' );
+		public function courses() {
+			return $this->belongsToMany( 'Course' );
 		}
 		
 		/**

@@ -15,8 +15,6 @@ class CreateModulesTable extends Migration {
 			$table->engine = 'InnoDB';
 			$table->increments( 'id' )->unsigned();
 			
-			$table->integer( 'course_id' )->unsigned();
-			
 			$table->string( 'name', 75 );
 			$table->string( 'short_name', 10 );
 			$table->string( 'calendar' );

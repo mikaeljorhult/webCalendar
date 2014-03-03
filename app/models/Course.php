@@ -12,7 +12,7 @@
 		];
 		
 		public function modules() {
-			return $this->hasMany( 'Module' );
+			return $this->belongsToMany( 'Module' )->withPivot( 'sort_order' );
 		}
 	}
 ?>
