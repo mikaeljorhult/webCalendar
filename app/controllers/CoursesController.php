@@ -60,7 +60,7 @@ class CoursesController extends \BaseController {
 			$course = $course[ 0 ];
 			$modules = $course->modules()->with( 'lessons' )->get();
 			
-			$module_id = $course->modules()->lists( 'id' );
+			$module_id = $course->modules()->lists( 'module_id' );
 			$lessons = Lesson::whereIn( 'module_id', $module_id )->orderBy( 'start_time', 'ASC' )->orderBy( 'title', 'ASC' )->get();
 			
 			if ( Request::ajax() ) {
