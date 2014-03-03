@@ -7,8 +7,8 @@
 		<ul id="modules" class="modules">
 			@foreach ( $modules as $module )
 				<li>
-					<input type="checkbox" name="{{ $module->course->code }}_{{ $module->short_name }}" id="{{ $module->course->code }}_{{ $module->short_name }}" class="{{ $module->short_name }}" checked="checked" />
-					<label for="{{ $module->course->code }}_{{ $module->short_name }}">{{ $module->name }}</label>
+					<input type="checkbox" name="{{ $course->code }}_module-{{ $module->pivot->sort_order }}" id="{{ $course->code }}_module-{{ $module->pivot->sort_order }}" class="module-{{ $module->pivot->sort_order }}" checked="checked" />
+					<label for="{{ $course->code }}_module-{{ $module->pivot->sort_order }}">{{ $module->name }}</label>
 				</li>
 			@endforeach
 		</ul>
