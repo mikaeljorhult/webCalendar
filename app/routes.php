@@ -37,3 +37,20 @@ Route::group( array( 'prefix' => 'admin', 'before' => 'auth' ), function() {
  * Display course schedule.
  */
 Route::get( 'schedule/{code}', array( 'uses' => 'CoursesController@display' ) );
+
+/*
+ * Form macros.
+ */
+Form::macro( 'courseCheckbox', function( $name, $selected = array() ) {
+	$return = '';
+	$courses = Course::orderBy( 'name' )->get();
+	
+	foreach ( $courses as $course ) {
+		$return .= '<li><label>' .
+			'<input type="checkbox" name="' . $name . '[]" value="' . $course->id . '"' . ( in_array( $course->id, $selected ) ? ' checked="checked"' : '' ) . ' /> ' .
+			$course->name .
+			'</label></li>';
+	}
+	
+	return ( $return ? '<ul>' . $return . '</ul>' : '' );
+} );

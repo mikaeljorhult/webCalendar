@@ -15,17 +15,8 @@
 		</li>
 		
 		<li>
-			{{ Form::label( 'course_id', 'Del av kurs' ) }}
-			
-			<?php
-				$select = [];
-				
-				foreach ( $courses as $course ) {
-					$select[ $course->id ] = $course->name;
-				}
-			?>
-			
-			{{ Form::select( 'course_id', $select); }}
+			{{ Form::label( 'courses', 'Kurser' ) }}
+			{{ Form::courseCheckbox( 'courses' ) }}
 		</li>
 		
 		<li>

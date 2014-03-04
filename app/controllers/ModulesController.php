@@ -21,10 +21,7 @@ class ModulesController extends \BaseController {
 	 * @return Response
 	 */
 	public function create() {
-		$courses = Course::all();
-		
-		$this->layout->content = View::make( 'modules.create' )
-			->with( 'courses', $courses );
+		$this->layout->content = View::make( 'modules.create' );
 	}
 	
 	/**
@@ -35,12 +32,13 @@ class ModulesController extends \BaseController {
 	public function store() {
 		$module = new Module;
 		
-		$module->course_id = Input::get( 'course_id' );
 		$module->name = Input::get( 'name' );
 		$module->short_name = Input::get( 'short_name' );
 		$module->calendar = Input::get( 'calendar' );
 		
 		if ( $module->validate() ) {
+			$module->courses()->sync( (array) Input::get( 'courses' ) );
+			
 			$module->save();
 		} else {
 			return Redirect::back()->withInput();
@@ -56,12 +54,13 @@ class ModulesController extends \BaseController {
 	 * @return Response
 	 */
 	public function show( $id ) {
-		$course = Module::find( $id );
+		$module = Module::find( $id );
 		
 		if ( Request::ajax() ) {
 			return $module;
 		} else {
-			$this->layout->content = View::make( 'modules.single', array( 'module' => $module ) );
+			$this->layout->content = View::make( 'modules.view' )
+				->with( 'module', $module );
 		}
 	}
 	
@@ -73,11 +72,9 @@ class ModulesController extends \BaseController {
 	 */
 	public function edit( $id ) {
 		$module = Module::find( $id );
-		$courses = Course::all();
 		
 		$this->layout->content = View::make( 'modules.edit' )
-			->with( 'module', $module )
-			->with( 'courses', $courses );
+			->with( 'module', $module );
 	}
 	
 	/**
@@ -89,12 +86,13 @@ class ModulesController extends \BaseController {
 	public function update( $id ) {
 		$module = Module::find( $id );
 		
-		$module->course_id = Input::get( 'course_id' );
 		$module->name = Input::get( 'name' );
 		$module->short_name = Input::get( 'short_name' );
 		$module->calendar = Input::get( 'calendar' );
 		
 		if ( $module->validate() ) {
+			$module->courses()->sync( (array) Input::get( 'courses' ) );
+			
 			$module->save();
 		} else {
 			return Redirect::back()->withInput();

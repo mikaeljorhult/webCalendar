@@ -6,7 +6,6 @@
 		public $timestamps = false;
 		protected $fillable = [ 'course_id', 'name', 'short_name', 'calendar' ];
 		public static $rules = [
-			'course_id' => [ 'required', 'exists:courses,id' ],
 			'name' => [ 'required' ],
 			'calendar' => [ 'required' ]
 		];
