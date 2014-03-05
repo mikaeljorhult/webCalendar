@@ -18,6 +18,8 @@ class CreateModulesTable extends Migration {
 			$table->string( 'name', 75 );
 			$table->string( 'short_name', 10 );
 			$table->string( 'calendar' );
+			$table->date( 'start_date' );
+			$table->date( 'end_date' );
 			
 			$table->timestamps();
 			

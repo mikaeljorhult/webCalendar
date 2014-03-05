@@ -18,9 +18,6 @@ class CreateCoursesTable extends Migration {
 			$table->string( 'code', 10 );
 			$table->string( 'name', 75 );
 			
-			$table->date( 'start_date' );
-			$table->date( 'end_date' );
-			
 			$table->timestamps();
 			
 			$table->index( 'code' );
