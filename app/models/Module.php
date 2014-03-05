@@ -4,9 +4,11 @@
 	 */
 	class Module extends BaseModel {
 		public $timestamps = false;
-		protected $fillable = [ 'course_id', 'name', 'short_name', 'calendar' ];
+		protected $fillable = [ 'course_id', 'name', 'short_name', 'start_date', 'end_date', 'calendar' ];
 		public static $rules = [
 			'name' => [ 'required' ],
+			'start_date' => [ 'required', 'date' ],
+			'end_date' => [ 'required', 'date' ],
 			'calendar' => [ 'required' ]
 		];
 		

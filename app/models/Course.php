@@ -3,12 +3,10 @@
 	 * Database model for Course object.
 	 */
 	class Course extends BaseModel {
-		protected $fillable = [ 'name', 'code', 'start_date', 'end_date' ];
+		protected $fillable = [ 'name', 'code' ];
 		public static $rules = [
 			'name' => [ 'required' ],
-			'code' => [ 'required', 'unique:courses' ],
-			'start_date' => [ 'required', 'date' ],
-			'end_date' => [ 'required', 'date' ]
+			'code' => [ 'required', 'unique:courses' ]
 		];
 		
 		public function modules() {
