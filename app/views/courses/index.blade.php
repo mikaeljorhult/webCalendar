@@ -6,8 +6,6 @@
 		<tr>
 			<th>Namn</th>
 			<th>Kurskod</th>
-			<th>Startdatum</th>
-			<th>Slutdatum</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>
@@ -18,8 +16,6 @@
 				<tr>
 					<td>{{ HTML::link( URL::route( 'admin.courses.show', $course->id ), $course->name ) }}</td>
 					<td>{{ $course->code }}</td>
-					<td>{{ $course->start_date }}</td>
-					<td>{{ $course->end_date }}</td>
 					<td>{{ HTML::link( URL::route( 'admin.courses.edit', $course->id ), 'Redigera' ) }}</td>
 					<td>
 						{{ Form::open( [ 'route' => [ 'admin.courses.destroy', $course->id ], 'method' => 'DELETE' ] ) }}

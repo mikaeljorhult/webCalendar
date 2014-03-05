@@ -15,16 +15,6 @@
 		</li>
 		
 		<li>
-			{{ Form::label( 'start_date', 'Startdatum' ) }}
-			{{ Form::text( 'start_date' ) }}
-		</li>
-		
-		<li>
-			{{ Form::label( 'end_date', 'Slutdatum' ) }}
-			{{ Form::text( 'end_date' ) }}
-		</li>
-		
-		<li>
 			{{ Form::submit( 'Uppdatera' ) }}
 		</li>
 	</ul>

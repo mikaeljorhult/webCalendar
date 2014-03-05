@@ -5,6 +5,8 @@
 	<thead>
 		<tr>
 			<th>Namn</th>
+			<th>Startdatum</th>
+			<th>Slutdatum</th>
 			<th>Kalender</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
@@ -15,6 +17,8 @@
 			@foreach ( $modules as $module )
 				<tr>
 					<td>{{ HTML::link( URL::route( 'admin.modules.show', $module->id ), $module->name ) }}</td>
+					<td>{{ $module->start_date }}</td>
+					<td>{{ $module->end_date }}</td>
 					<td>{{ HTML::link( $module->calendar, 'Länk' ) }}</td>
 					<td>{{ HTML::link( URL::route( 'admin.modules.edit', $module->id ), 'Redigera' ) }}</td>
 					<td>
