@@ -5,8 +5,18 @@ class AppController extends BaseController {
 	
 	public function index() {
 		$today = new DateTime( 'today' );
-		$courses = Course::where( 'start_date', '<=', $today )
+		$modules = Module::with( 'courses' )
+			->where( 'start_date', '<=', $today )
 			->where( 'end_date', '>=', $today )
+			->get();
+		
+		$ids = [];
+		foreach( $modules as $module ) {
+			$ids = array_merge( $ids, $module->courses->lists( 'id' ) );
+		}
+		
+		$courses = Course::with( 'modules' )
+			->whereIn( 'id', array_unique( $ids ) )
 			->get();
 		
 		$this->layout->content = View::make( 'home' )
@@ -25,20 +35,18 @@ class AppController extends BaseController {
 			$courses = Course::find( $id );
 		} else {
 			$today = new DateTime( 'today' );
-			$courses = Course::where( 'start_date', '<=', $today )
+			$modules = Module::with( 'courses' )
+				->where( 'start_date', '<=', $today )
 				->where( 'end_date', '>=', $today )
-				->with( 'modules' )
 				->get();
 		}
 		
-		if ( count( $courses ) > 0 ) {
-			foreach( $courses as $course ) {
-				foreach ( $course->modules as $module ) {
-					$module->retrieve();
-				}
+		if ( count( $modules ) > 0 ) {
+			foreach ( $modules as $module ) {
+				$module->retrieve();
 			}
 		} else {
-			// Inga aktiva kurser.
+			// No active courses.
 		}
 		
 		$this->layout->content = View::make( 'update' );
