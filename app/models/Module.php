@@ -40,7 +40,7 @@
 			$calendar = $this->calendar;
 			
 			// Retrieve calendar from source.
-			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->course->start_date . '&start-max=' . $this->course->end_date . '&orderby=starttime', $calendar );
+			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->start_date . '&start-max=' . $this->end_date . '&orderby=starttime', $calendar );
 			$xml = simplexml_load_file( $calendar );
 			
 			// Proceed if file was downloaded and parsed correctly.
