@@ -10,14 +10,18 @@ class AppController extends BaseController {
 			->where( 'end_date', '>=', $today )
 			->get();
 		
-		$ids = [];
-		foreach( $modules as $module ) {
-			$ids = array_merge( $ids, $module->courses->lists( 'id' ) );
-		}
+		$courses = [];
 		
-		$courses = Course::with( 'modules' )
-			->whereIn( 'id', array_unique( $ids ) )
-			->get();
+		if ( count( $modules ) > 0 ) {
+			$ids = [];
+			foreach( $modules as $module ) {
+				$ids = array_merge( $ids, $module->courses->lists( 'id' ) );
+			}
+			
+			$courses = Course::with( 'modules' )
+				->whereIn( 'id', array_unique( $ids ) )
+				->get();
+		}
 		
 		$this->layout->content = View::make( 'home' )
 			->with( 'courses', $courses );
