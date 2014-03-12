@@ -11,13 +11,16 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 		
 		// Empty all tables.
-		DB::table( 'users' )->delete();
+		foreach ( [ 'users', 'courses', 'modules', 'course_module', 'lessons' ] as $table ) {
+			DB::table( $table )->delete();
+		}
 		
 		// Populate tables.
 		$this->call( 'UsersTableSeeder' );
 		$this->call( 'CoursesTableSeeder' );
 		$this->call( 'ModulesTableSeeder' );
 		$this->call( 'CourseModuleTableSeeder' );
+		$this->call( 'LessonsTableSeeder' );
 	}
 
 }

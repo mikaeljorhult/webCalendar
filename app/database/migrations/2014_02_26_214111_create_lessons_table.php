@@ -11,7 +11,7 @@ class CreateLessonsTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create( 'lessons', function( Blueprint$table ) {
+		Schema::create( 'lessons', function( Blueprint $table ) {
 			$table->engine = 'InnoDB';
 			$table->bigIncrements( 'id' )->unsigned();
 			
