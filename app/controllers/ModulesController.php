@@ -33,7 +33,8 @@ class ModulesController extends \BaseController {
 		$module = new Module;
 		
 		$module->name = Input::get( 'name' );
-		$module->short_name = Input::get( 'short_name' );
+		$module->start_date = Input::get( 'start_date' );
+		$module->end_date = Input::get( 'end_date' );
 		$module->calendar = Input::get( 'calendar' );
 		
 		if ( $module->validate() ) {
@@ -87,7 +88,8 @@ class ModulesController extends \BaseController {
 		$module = Module::find( $id );
 		
 		$module->name = Input::get( 'name' );
-		$module->short_name = Input::get( 'short_name' );
+		$module->start_date = Input::get( 'start_date' );
+		$module->end_date = Input::get( 'end_date' );
 		$module->calendar = Input::get( 'calendar' );
 		
 		if ( $module->validate() ) {

@@ -34,8 +34,6 @@ class CoursesController extends \BaseController {
 		
 		$course->name = Input::get( 'name' );
 		$course->code = Input::get( 'code' );
-		$course->start_date = Input::get( 'start_date' );
-		$course->end_date = Input::get( 'end_date' );
 		$course->created_at = new DateTime;
 		
 		if ( $course->validate() ) {
@@ -56,7 +54,7 @@ class CoursesController extends \BaseController {
 	public function display( $code ) {
 		$course = Course::where( 'code', '=', $code )->get();
 		
-		if ( $course ) {
+		if ( count( $course ) > 0 ) {
 			$course = $course[ 0 ];
 			$modules = $course->modules()->with( 'lessons' )->get();
 			
@@ -128,8 +126,6 @@ class CoursesController extends \BaseController {
 		
 		$course->name = Input::get( 'name' );
 		$course->code = Input::get( 'code' );
-		$course->start_date = Input::get( 'start_date' );
-		$course->end_date = Input::get( 'end_date' );
 		
 		if ( $course->validate() ) {
 			$course->save();

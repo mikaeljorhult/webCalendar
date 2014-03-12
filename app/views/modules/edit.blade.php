@@ -10,11 +10,6 @@
 		</li>
 		
 		<li>
-			{{ Form::label( 'short_name', 'Kort namn' ) }}
-			{{ Form::text( 'short_name' ) }}
-		</li>
-		
-		<li>
 			{{ Form::label( 'start_date', 'Startdatum' ) }}
 			{{ Form::text( 'start_date' ) }}
 		</li>

@@ -14,7 +14,7 @@ class CourseModuleTableSeeder extends Seeder {
 			// For each module.
 			foreach ( range( 1, 30 ) as $module ) {
 				// 50% chance that the module should belong to course.
-				if ( rand( 0, 10 ) > 8 ) {
+				if ( rand( 0, 10 ) > 9 ) {
 					DB::table( 'course_module' )->insert( [
 						'course_id' => $course,
 						'module_id' => $module,
