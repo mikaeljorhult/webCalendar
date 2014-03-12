@@ -1,13 +1,19 @@
 <?php
 
+use Faker\Factory as Faker;
+
 class ModulesTableSeeder extends Seeder {
 	public function run() {
-		DB::table( 'modules' )->insert( array(
-			'name' => 'Musikskapande',
-			'short_name' => 'module-1',
-			'start_date' => '2014-02-01',
-			'end_date' => '2014-12-01',
-			'calendar' => 'https://www.google.com/calendar/feeds/71o5b1bl27os2c3bspqmk0rans%40group.calendar.google.com/private-c6747fc3e8aa6cfea85c144e5364a2a1/basic'
-		) );
+		$faker = Faker::create();
+		
+		foreach ( range( 1, 30 ) as $index ) {
+			Module::create( [
+				'name' => trim( $faker->sentence( rand( 1, 3 ) ), ' .' ),
+				'short_name' => 'module-1',
+				'start_date' => $faker->dateTimeBetween( '-1 month', '+1 month' )->format( 'Y-m-d' ),
+				'end_date' => $faker->dateTimeBetween( '-1 month', '+1 month' )->format( 'Y-m-d' ),
+				'calendar' => 'http://google.se'
+			] );
+		}
 	}
 }
