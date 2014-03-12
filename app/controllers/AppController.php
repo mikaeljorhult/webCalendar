@@ -4,24 +4,7 @@ class AppController extends BaseController {
 	protected $layout = '_layouts.default';
 	
 	public function index() {
-		$today = new DateTime( 'today' );
-		$modules = Module::with( 'courses' )
-			->where( 'start_date', '<=', $today )
-			->where( 'end_date', '>=', $today )
-			->get();
-		
-		$courses = [];
-		
-		if ( count( $modules ) > 0 ) {
-			$ids = [];
-			foreach( $modules as $module ) {
-				$ids = array_merge( $ids, $module->courses->lists( 'id' ) );
-			}
-			
-			$courses = Course::with( 'modules' )
-				->whereIn( 'id', array_unique( $ids ) )
-				->get();
-		}
+		$courses = Course::active()->get();
 		
 		$this->layout->content = View::make( 'home' )
 			->with( 'courses', $courses );
