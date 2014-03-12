@@ -12,4 +12,15 @@
 		color: #fff;
 		line-height: 1.6;
 	}
+	
+	.nav {
+		display: none;
+		margin: 0;
+		font-size: 0.9em;
+		line-height: 2.1;
+		
+		a {
+			color: rgba( #fff, 0.6 );
+		}
+	}
 }
