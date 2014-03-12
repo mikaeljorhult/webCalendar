@@ -4,8 +4,11 @@
 	"keywords": ["calendar", "google"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
-		"way/generators": "dev-master"
+		"laravel/framework": "4.1.*"
+	},
+	"require-dev": {
+		"way/generators": "dev-master",
+		"fzaninotto/faker": "v1.3.0"
 	},
 	"autoload": {
 		"classmap": [
