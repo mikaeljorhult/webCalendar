@@ -14,10 +14,8 @@
 		}
 		
 		public function scopeActive( $query ) {
-			$today = new DateTime( 'today' );
 			$modules = Module::with( 'courses' )
-				->where( 'start_date', '<=', $today )
-				->where( 'end_date', '>=', $today )
+				->active()
 				->get();
 			
 			$ids = [ 0 ];
