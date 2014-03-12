@@ -53,6 +53,7 @@ class CoursesController extends \BaseController {
 	 */
 	public function display( $code ) {
 		$course = Course::where( 'code', '=', $code )->get();
+		$sort_order = [];
 		
 		if ( count( $course ) > 0 ) {
 			$course = $course[ 0 ];
@@ -61,13 +62,18 @@ class CoursesController extends \BaseController {
 			$module_id = $course->modules()->lists( 'module_id' );
 			$lessons = Lesson::whereIn( 'module_id', $module_id )->orderBy( 'start_time', 'ASC' )->orderBy( 'title', 'ASC' )->get();
 			
+			foreach ( $modules as $module ) {
+				$sort_order[ $module->id ] = $module->pivot->sort_order;
+			}
+			
 			if ( Request::ajax() ) {
 				return $course;
 			} else {
 				$this->layout->content = View::make( 'courses.schedule' )
 					->with( 'course', $course )
 					->with( 'modules', $modules )
-					->with( 'lessons', $lessons );
+					->with( 'lessons', $lessons )
+					->with( 'sort_order', $sort_order );
 			}
 		} else {
 			return Redirect::route( 'home' );

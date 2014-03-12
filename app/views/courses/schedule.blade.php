@@ -50,7 +50,7 @@
 				<div class="event-block">
 			@endif
 			
-			<div class="event {{ $lesson->module->short_name }}">
+			<div class="event module-{{ $sort_order[ $lesson->module->id ] }}">
 				<span class="event-date">{{ date( 'H:i', strtotime( $lesson->start_time ) ) }} - {{ date( 'H:i', strtotime( $lesson->end_time ) ) }}</span>: 
 				<span class="event-title">{{ $lesson->title }}</span>
 				
