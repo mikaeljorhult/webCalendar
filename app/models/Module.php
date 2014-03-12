@@ -30,6 +30,13 @@
 			return $this->hasMany( 'Lesson' );
 		}
 		
+		public function scopeActive( $query ) {
+			$today = new DateTime( 'today' );
+			
+			return $query->where( 'start_date', '<=', $today )
+				->where( 'end_date', '>=', $today );
+		}
+		
 		/**
 		 * Retrieve and parse calendar XML file.
 		 * 

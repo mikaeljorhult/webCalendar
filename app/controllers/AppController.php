@@ -22,10 +22,7 @@ class AppController extends BaseController {
 			$courses = Course::find( $id );
 		} else {
 			$today = new DateTime( 'today' );
-			$modules = Module::with( 'courses' )
-				->where( 'start_date', '<=', $today )
-				->where( 'end_date', '>=', $today )
-				->get();
+			$modules = Module::active()->get();
 		}
 		
 		if ( count( $modules ) > 0 ) {
