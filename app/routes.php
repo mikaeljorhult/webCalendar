@@ -25,12 +25,6 @@ Route::group( array( 'prefix' => 'admin', 'before' => 'auth' ), function() {
 	Route::resource( 'modules', 'ModulesController' );
 	Route::resource( 'lessons', 'LessonsController' );
 	Route::resource( 'users', 'UsersController' );
-	
-	/*
-	 * Update courses.
-	 */
-	Route::get( 'update', array( 'as' => 'update', 'uses' => 'AppController@update' ) );
-	Route::get( 'update/{id}', array( 'as' => 'update.course', 'uses' => 'AppController@update' ) );
 } );
 
 /*
