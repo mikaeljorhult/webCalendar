@@ -3,9 +3,9 @@
 class UsersTableSeeder extends Seeder {
 	public function run() {
 		DB::table( 'users' )->insert( array(
-			'username' => 'mjr',
+			'username' => 'test',
 			'password' => Hash::make( getenv( 'DEFAULT_PASSWORD' ) ),
-			'email' => 'mjr@du.se'
+			'email' => 'test@test.com'
 		) );
 	}
 }
