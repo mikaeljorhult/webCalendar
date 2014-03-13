@@ -1,6 +1,6 @@
 {
 	"name": "mikaeljorhult/webCalendar2",
-	"description": "Fetch and display multiple Google calendars as one.",
+	"description": "Fetch and display multiple Google calendars as one schedule.",
 	"keywords": ["calendar", "google"],
 	"license": "MIT",
 	"require": {
