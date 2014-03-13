@@ -48,7 +48,15 @@
 			
 			// Retrieve calendar from source.
 			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->start_date . '&start-max=' . $this->end_date . '&orderby=starttime', $calendar );
-			$xml = simplexml_load_file( $calendar );
+			$xml = false;
+			
+			// Fetch and parse XML.
+			try {
+				$xml = simplexml_load_file( $calendar );
+			} catch( Exception $e ) {
+				// Failed to parse XML file.
+				Log::error( $e );
+			}
 			
 			// Proceed if file was downloaded and parsed correctly.
 			if ( $xml ) {
