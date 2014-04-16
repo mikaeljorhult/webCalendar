@@ -5,7 +5,7 @@ Fetch and display multiple Google calendars as one single schedule.
 ## Installation
 Just place the files on your web server and run `composer install`.
 
-### Environment variables
+## Environment variables
 
 Database credentials as well as default password is determined by a `.env.php` file.
 
