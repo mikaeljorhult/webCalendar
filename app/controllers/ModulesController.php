@@ -38,9 +38,8 @@ class ModulesController extends \BaseController {
 		$module->calendar = Input::get( 'calendar' );
 		
 		if ( $module->validate() ) {
-			$module->courses()->sync( (array) Input::get( 'courses' ) );
-			
 			$module->save();
+			$module->courses()->sync( (array) Input::get( 'courses' ) );
 		} else {
 			return Redirect::back()->withInput();
 		}
