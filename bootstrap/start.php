@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment( array(
-	'local' => array( 'Jorhult.local', 'jorhult.lan' ),
+	'local' => array( 'Jorhult.local', 'jorhult.lan', 'mac-mjr.local' ),
 ) );
 
 /*
