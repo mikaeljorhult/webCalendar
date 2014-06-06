@@ -33,8 +33,8 @@
 		public function scopeActive( $query ) {
 			$today = new DateTime( 'today' );
 			
-			return $query->where( 'start_date', '<=', $today )
-				->where( 'end_date', '>=', $today );
+			return $query->where( 'start_date', '<=', $today->format( 'Y-m-d H:i:s' ) )
+				->where( 'end_date', '>=', $today->format( 'Y-m-d H:i:s' ) );
 		}
 		
 		/**
