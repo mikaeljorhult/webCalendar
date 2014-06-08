@@ -45,7 +45,7 @@
 	
 	<script type="text/javascript">var baseurl = "<?php echo URL::route( 'home' ); ?>";</script>
 	{{ HTML::script( 'assets/js/jquery.js' ); }}
-	{{ HTML::script( 'assets/js/plugins.js' ); }}
+	{{ HTML::script( 'assets/js/jquery-ui.js' ); }}
 	{{ HTML::script( 'assets/js/main.js' ); }}
 </body>
 
