@@ -13,7 +13,7 @@
 			return $this
 				->belongsToMany( 'Module' )
 				->withPivot( 'sort_order' )
-				->orderBy( 'pivot_sort_order', 'ASC' );
+				->orderBy( 'sort_order', 'ASC' );
 		}
 		
 		public function scopeActive( $query ) {
