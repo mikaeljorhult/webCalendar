@@ -133,6 +133,16 @@ class CoursesController extends \BaseController {
 		$course->name = Input::get( 'name' );
 		$course->code = Input::get( 'code' );
 		
+		if ( Input::has( 'modules' ) ) {
+			$modules = Input::get( 'modules' );
+			$sort_order = 1;
+			
+			foreach ( $modules as $module ) {
+				$course->modules()->updateExistingPivot( $module, [ 'sort_order' => $sort_order ], false );
+				$sort_order++;
+			}
+		}
+		
 		if ( $course->validate() ) {
 			$course->save();
 		} else {
