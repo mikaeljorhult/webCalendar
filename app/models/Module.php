@@ -74,8 +74,8 @@
 							// Add to values to array.
 							$lessons[] = array(
 								'module_id' => $this->id,
-								'title' => (string) $entry->title,
-								'description' => (string) $entry->content,
+								'title' => substr( $entry->title, 0, 255 ),
+								'description' => substr( $entry->content, 0, 255 ),
 								'start_time' => new DateTime( $ns_gd->when->attributes()->startTime ),
 								'end_time' => new DateTime( $ns_gd->when->attributes()->endTime )
 							);
