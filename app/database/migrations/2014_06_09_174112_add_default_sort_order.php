@@ -22,5 +22,4 @@ class AddDefaultSortOrder extends Migration {
 	public function down() {
 		DB::statement( 'ALTER TABLE course_module CHANGE COLUMN sort_order sort_order int( 10 ) UNSIGNED NOT NULL;' );
 	}
-
 }
