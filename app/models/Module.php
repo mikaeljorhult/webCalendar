@@ -61,7 +61,7 @@
 			// Proceed if file was downloaded and parsed correctly.
 			if ( $xml ) {
 				// Proceed if calendar has been updated since last retrieval.
-				if ( strtotime( $xml->updated ) > strtotime( $this->updated_at ) ) {
+				if ( true == true || strtotime( $xml->updated ) > strtotime( $this->updated_at ) ) {
 					$lessons = array();
 					
 					// Add all events to array.
@@ -75,6 +75,7 @@
 							$lessons[] = array(
 								'module_id' => $this->id,
 								'title' => substr( $entry->title, 0, 255 ),
+								'location' => substr( $ns_gd->where->attributes()->valueString, 0, 50 ),
 								'description' => substr( $entry->content, 0, 255 ),
 								'start_time' => new DateTime( $ns_gd->when->attributes()->startTime ),
 								'end_time' => new DateTime( $ns_gd->when->attributes()->endTime )
