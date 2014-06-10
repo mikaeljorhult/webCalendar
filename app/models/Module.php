@@ -47,7 +47,7 @@
 			$calendar = $this->calendar;
 			
 			// Retrieve calendar from source.
-			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->start_date . '&start-max=' . $this->end_date . '&orderby=starttime', $calendar );
+			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->start_date . '&start-max=' . $this->end_date . '&orderby=starttime&max-results=500', $calendar );
 			$xml = false;
 			
 			// Fetch and parse XML.
