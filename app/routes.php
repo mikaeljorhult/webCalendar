@@ -33,6 +33,13 @@ Route::group( array( 'prefix' => 'admin', 'before' => 'auth' ), function() {
 Route::get( 'schedule/{code}', array( 'uses' => 'CoursesController@display' ) );
 
 /*
+ * Error handling.
+ */
+App::missing( function( $exception ) {
+    return Response::view( 'errors.404', array(), 404 );
+} );
+
+/*
  * Form macros.
  */
 Form::macro( 'courseCheckbox', function( $name, $selected = array() ) {
