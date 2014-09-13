@@ -10,7 +10,7 @@
 			
 			<li>
 				{{ Form::label( 'password', 'Lösenord', [ 'class' => 'placeholder' ] ) }}
-				{{ Form::password( 'password', '',  [ 'autocorrect' => 'off', 'autocapitalize' => 'off', 'placeholder' => 'Lösenord' ] ) }}
+				{{ Form::password( 'password', [ 'autocorrect' => 'off', 'autocapitalize' => 'off', 'placeholder' => 'Lösenord' ] ) }}
 			</li>
 			
 			<li>
