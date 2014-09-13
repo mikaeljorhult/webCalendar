@@ -28,6 +28,11 @@
 			
 			// Hide days and weeks without visible events.
 			calculate_hidden();
+			
+			// Store value of checkbox.
+			if ( Modernizr.localstorage ) {
+				localStorage.setItem( 'hide-past', $( this ).prop( 'checked' ) );
+			}
 		} );
 	
 	
@@ -38,7 +43,8 @@
 	function init_filters() {
 		// Check for localStorage support.
 		if ( Modernizr.localstorage ) {
-			var modules = JSON.parse( localStorage.getItem( 'modules' ) );
+			var modules = JSON.parse( localStorage.getItem( 'modules' ) ),
+				hide_past = localStorage.getItem( 'hide-past' ) === 'true';
 			
 			// Go through modules and check localStorage.
 			if ( modules ) {
@@ -52,6 +58,9 @@
 					}
 				} );
 			}
+			
+			// Restore state of hide past checkbox.
+			$( '#hide-past' ).prop( 'checked', hide_past );
 		}
 	}
 	
