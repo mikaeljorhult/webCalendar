@@ -87,9 +87,11 @@
 					$this->lessons()->delete();
 					
 					// Insert newly retrieved lessons.
-					DB::table( 'lessons' )->insert(
-						$lessons
-					);
+					if ( count( $lessons ) > 0 ) {
+						DB::table( 'lessons' )->insert(
+							$lessons
+						);
+					}
 				}
 			}
 			
