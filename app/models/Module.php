@@ -43,44 +43,38 @@
 		 * @return void
 		 */
 		public function retrieve() {
-			// Get calendar URL from database.
-			$calendar = $this->calendar;
+			// Put togheter URL to call.
+			$endpoint = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar . '/events?singleEvents=true&timeMin=' .  $this->start_date . 'T00:00:00.000Z&timeMax=' . $this->end_date . 'T23:59:59.000Z&orderBy=startTime&maxResults=500&key=' . getenv( 'API_KEY' );
+			$json = [];
+			$client = new GuzzleHttp\Client();
 			
-			// Retrieve calendar from source.
-			$calendar = str_replace( '/basic', '/full?singleevents=true&start-min=' .  $this->start_date . '&start-max=' . $this->end_date . '&orderby=starttime&max-results=500', $calendar );
-			$xml = false;
+			// Try to fetch calendar.
+			$response = $client->get( $endpoint, [ 'exceptions' => false ] );
 			
-			// Fetch and parse XML.
-			try {
-				$xml = simplexml_load_file( $calendar );
-			} catch( Exception $e ) {
-				// Failed to parse XML file.
-				Log::error( $e );
+			// Check that calendar was returned correctly.
+			if ( $response->getStatusCode() === 200 ) {
+				$json = $response->json();
+			} else {
+				// Log that retrieval of calendar failed.
+				Log::error( 'Couldn\'t retrieve calendar for ' . $this->name . ': ' . $endpoint );
 			}
 			
 			// Proceed if file was downloaded and parsed correctly.
-			if ( $xml ) {
+			if ( $json ) {
 				// Proceed if calendar has been updated since last retrieval.
-				if ( true == true || strtotime( $xml->updated ) > strtotime( $this->updated_at ) ) {
+				if ( strtotime( $json[ 'updated' ] ) > strtotime( $this->updated_at ) ) {
 					$lessons = array();
 					
 					// Add all events to array.
-					foreach ( $xml->entry as $entry ) {
-						// Parse file according to namespace schema.
-						$ns_gd = $entry->children( 'http://schemas.google.com/g/2005' );
-						
-						// Only add lessons with timestamps.
-						if ( isset( $ns_gd->when ) ) {
-							// Add to values to array.
-							$lessons[] = array(
-								'module_id' => $this->id,
-								'title' => substr( $entry->title, 0, 255 ),
-								'location' => substr( $ns_gd->where->attributes()->valueString, 0, 50 ),
-								'description' => substr( $entry->content, 0, 255 ),
-								'start_time' => new DateTime( $ns_gd->when->attributes()->startTime ),
-								'end_time' => new DateTime( $ns_gd->when->attributes()->endTime )
-							);
-						}
+					foreach ( $json[ 'items' ] as $item ) {
+						$lessons[] = array(
+							'module_id' => $this->id,
+							'title' => isset( $item[ 'summary' ] ) ? substr( $item[ 'summary' ], 0, 255 ) : '',
+							'location' => isset( $item[ 'location' ] ) ? substr( $item[ 'location' ], 0, 50 ) : '',
+							'description' => isset( $item[ 'description' ] ) ? substr( $item[ 'description' ], 0, 255 ) : '',
+							'start_time' => isset( $item[ 'start' ][ 'dateTime' ] ) ? new DateTime( $item[ 'start' ][ 'dateTime' ] ) : new DateTime( $item[ 'start' ][ 'date' ] . 'T00:00:00' ),
+							'end_time' => isset( $item[ 'end' ][ 'dateTime' ] ) ? new DateTime( $item[ 'end' ][ 'dateTime' ] ) : new DateTime( $item[ 'start' ][ 'date' ] . 'T00:00:00' )
+						);
 					}
 					
 					// Delete previously stored lessons.
@@ -92,10 +86,11 @@
 							$lessons
 						);
 					}
+					
+					// Set updated timestamp on module.
+					$this->touch();
 				}
 			}
-			
-			$this->touch();	
 		}
 	}
 ?>
