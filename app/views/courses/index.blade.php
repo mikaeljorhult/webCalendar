@@ -14,7 +14,7 @@
 		@if ( $courses )
 			@foreach ( $courses as $course )
 				<tr>
-					<td>{{ HTML::link( URL::route( 'admin.courses.show', $course->id ), $course->name ) }}</td>
+					<td>{{ $course->name }}</td>
 					<td>{{ $course->code }}</td>
 					<td>{{ HTML::link( URL::route( 'admin.courses.edit', $course->id ), 'Redigera' ) }}</td>
 					<td>
