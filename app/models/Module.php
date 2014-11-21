@@ -38,25 +38,44 @@
 		}
 		
 		/**
-		 * Retrieve and parse calendar XML file.
+		 * Return calendar feed URL.
+		 * 
+		 * @return string
+		 */
+		public function url() {
+			$url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar . '/events';
+			$parameters = [
+				'singleEvents' => 'true',
+				'timeMin' =>  $this->start_date . 'T00:00:00.000Z',
+				'timeMax' => $this->end_date . 'T23:59:59.000Z',
+				'orderBy' => 'startTime',
+				'maxResults' => '500',
+				'key' => getenv( 'API_KEY' )
+			];
+			
+			return $url . '?' . http_build_query( $parameters );
+		}
+		
+		/**
+		 * Retrieve and parse calendar feed.
 		 * 
 		 * @return void
 		 */
 		public function retrieve() {
 			// Put togheter URL to call.
-			$endpoint = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar . '/events?singleEvents=true&timeMin=' .  $this->start_date . 'T00:00:00.000Z&timeMax=' . $this->end_date . 'T23:59:59.000Z&orderBy=startTime&maxResults=500&key=' . getenv( 'API_KEY' );
+			$url = $this->url();
 			$json = [];
 			$client = new GuzzleHttp\Client();
 			
 			// Try to fetch calendar.
-			$response = $client->get( $endpoint, [ 'exceptions' => false ] );
+			$response = $client->get( $url, [ 'exceptions' => false ] );
 			
 			// Check that calendar was returned correctly.
 			if ( $response->getStatusCode() === 200 ) {
 				$json = $response->json();
 			} else {
 				// Log that retrieval of calendar failed.
-				Log::error( 'Couldn\'t retrieve calendar for ' . $this->name . ': ' . $endpoint );
+				Log::error( 'Couldn\'t retrieve calendar for ' . $this->name . ': ' . $url );
 			}
 			
 			// Proceed if file was downloaded and parsed correctly.
