@@ -16,6 +16,7 @@ return [
 	'DB_NAME' => 'webcalendar',
 	'DB_USER' => 'webcalendar',
 	'DB_PASS' => 'database-password',
-	'DEFAULT_PASSWORD' => 'user-password'
+	'DEFAULT_PASSWORD' => 'user-password',
+	'API_KEY' => 'google-calendar-api-key'
 ];
 ```
