@@ -64,20 +64,8 @@
 		 */
 		public function retrieve() {
 			// Put togheter URL to call.
-			$url = $this->url();
-			$json = [];
-			$client = new GuzzleHttp\Client();
-			
-			// Try to fetch calendar.
-			$response = $client->get( $url, [ 'exceptions' => false ] );
-			
-			// Check that calendar was returned correctly.
-			if ( $response->getStatusCode() === 200 ) {
-				$json = $response->json();
-			} else {
-				// Log that retrieval of calendar failed.
-				Log::error( 'Couldn\'t retrieve calendar for ' . $this->name . ': ' . $url );
-			}
+			$calendar = new WebCalendar\Calendar( $this );
+			$json = $calendar->get();
 			
 			// Proceed if file was downloaded and parsed correctly.
 			if ( $json ) {
