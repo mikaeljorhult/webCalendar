@@ -20,7 +20,7 @@
 		</li>
 		
 		<li>
-			{{ Form::label( 'calendar', 'Adress till kalender' ) }}
+			{{ Form::label( 'calendar', 'Kalender-ID' ) }}
 			{{ Form::text( 'calendar' ) }}
 		</li>
 		

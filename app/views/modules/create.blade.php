@@ -20,8 +20,8 @@
 		</li>
 		
 		<li>
-			{{ Form::label( 'calendar', 'Adress till kalender' ) }}
-			{{ Form::text( 'calendar', '', [ 'placeholder' => 'Adress till kalender' ] ) }}
+			{{ Form::label( 'calendar', 'Kalender-ID' ) }}
+			{{ Form::text( 'calendar', '', [ 'placeholder' => 'Kalender-ID' ] ) }}
 		</li>
 		
 		<li>
