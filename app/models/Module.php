@@ -5,6 +5,7 @@
 	class Module extends BaseModel {
 		public $timestamps = false;
 		protected $fillable = [ 'course_id', 'name', 'short_name', 'start_date', 'end_date', 'calendar' ];
+		protected $appends = [ 'url' ];
 		public static $rules = [
 			'name' => [ 'required' ],
 			'start_date' => [ 'required', 'date' ],
@@ -42,7 +43,7 @@
 		 * 
 		 * @return string
 		 */
-		public function url() {
+		public function getUrlAttribute() {
 			$url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar . '/events';
 			$parameters = [
 				'singleEvents' => 'true',

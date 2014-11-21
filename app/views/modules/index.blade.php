@@ -19,7 +19,7 @@
 					<td>{{ HTML::link( URL::route( 'admin.modules.show', $module->id ), $module->name ) }}</td>
 					<td>{{ $module->start_date }}</td>
 					<td>{{ $module->end_date }}</td>
-					<td>{{ HTML::link( $module->url(), 'Länk' ) }}</td>
+					<td>{{ HTML::link( $module->url, 'Länk' ) }}</td>
 					<td>{{ HTML::link( URL::route( 'admin.modules.edit', $module->id ), 'Redigera' ) }}</td>
 					<td>
 						{{ Form::open( [ 'route' => [ 'admin.modules.destroy', $module->id ], 'method' => 'DELETE' ] ) }}
