@@ -5,7 +5,6 @@
 	class Module extends BaseModel {
 		public $timestamps = false;
 		protected $fillable = [ 'course_id', 'name', 'short_name', 'start_date', 'end_date', 'calendar' ];
-		protected $appends = [ 'url' ];
 		public static $rules = [
 			'name' => [ 'required' ],
 			'start_date' => [ 'required', 'date' ],
@@ -39,65 +38,29 @@
 		}
 		
 		/**
-		 * Return calendar feed URL.
-		 * 
-		 * @return string
-		 */
-		public function getUrlAttribute() {
-			$url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar . '/events';
-			$parameters = [
-				'singleEvents' => 'true',
-				'timeMin' =>  $this->start_date . 'T00:00:00.000Z',
-				'timeMax' => $this->end_date . 'T23:59:59.000Z',
-				'orderBy' => 'startTime',
-				'maxResults' => '500',
-				'key' => getenv( 'API_KEY' )
-			];
-			
-			return $url . '?' . http_build_query( $parameters );
-		}
-		
-		/**
 		 * Retrieve and parse calendar feed.
 		 * 
 		 * @return void
 		 */
 		public function retrieve() {
-			// Put togheter URL to call.
-			$calendar = new WebCalendar\Calendar( $this );
-			$json = $calendar->get();
+			// Get requested calendar.
+			$calendar = new WebCalendar\GoogleCalendar( $this );
+			$items = $calendar->get();
 			
-			// Proceed if file was downloaded and parsed correctly.
-			if ( $json ) {
-				// Proceed if calendar has been updated since last retrieval.
-				if ( strtotime( $json[ 'updated' ] ) > strtotime( $this->updated_at ) ) {
-					$lessons = array();
-					
-					// Add all events to array.
-					foreach ( $json[ 'items' ] as $item ) {
-						$lessons[] = array(
-							'module_id' => $this->id,
-							'title' => isset( $item[ 'summary' ] ) ? substr( $item[ 'summary' ], 0, 255 ) : '',
-							'location' => isset( $item[ 'location' ] ) ? substr( $item[ 'location' ], 0, 50 ) : '',
-							'description' => isset( $item[ 'description' ] ) ? substr( $item[ 'description' ], 0, 255 ) : '',
-							'start_time' => isset( $item[ 'start' ][ 'dateTime' ] ) ? new DateTime( $item[ 'start' ][ 'dateTime' ] ) : new DateTime( $item[ 'start' ][ 'date' ] . 'T00:00:00' ),
-							'end_time' => isset( $item[ 'end' ][ 'dateTime' ] ) ? new DateTime( $item[ 'end' ][ 'dateTime' ] ) : new DateTime( $item[ 'start' ][ 'date' ] . 'T00:00:00' )
-						);
-					}
-					
-					// Delete previously stored lessons.
-					$this->lessons()->delete();
-					
-					// Insert newly retrieved lessons.
-					if ( count( $lessons ) > 0 ) {
-						DB::table( 'lessons' )->insert(
-							$lessons
-						);
-					}
-					
-					// Set updated timestamp on module.
-					$this->touch();
+			// Only proceed if fetch was successful.
+			if ( $items !== false ) {
+				// Delete previously stored lessons.
+				$this->lessons()->delete();
+				
+				// Insert newly retrieved lessons.
+				if ( count( $items ) > 0 ) {
+					DB::table( 'lessons' )->insert(
+						$items
+					);
 				}
+				
+				// Set updated timestamp on module.
+				$this->touch();
 			}
 		}
 	}
