@@ -10,7 +10,7 @@ class GoogleCalendar {
 		$this->module = $module;
 	}
 	
-	public function url() {
+	private function url() {
 		$url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->module->calendar . '/events';
 		$parameters = [
 			'singleEvents' => 'true',
@@ -25,13 +25,11 @@ class GoogleCalendar {
 	}
 	
 	public function get() {
-		$client = new Client();
-		
 		// Try to fetch calendar.
-		$response = $client->get( $this->url(), [ 'exceptions' => false ] );
+		$response = $this->request();
 		
 		// Check that calendar was returned correctly.
-		if ( $response->getStatusCode() === 200 ) {
+		if ( $response ) {
 			return $this->parse( $response->json() );
 		} else {
 			// Log that retrieval of calendar failed.
@@ -41,7 +39,18 @@ class GoogleCalendar {
 		return false;
 	}
 	
-	public function parse( $json ) {
+	private function request() {
+		$client = new Client();
+		$response = $client->get( $this->url(), [ 'exceptions' => false ] );
+		
+		if ( $response->getStatusCode() === 200 ) {
+			return $response;
+		}
+		
+		return false;
+	}
+	
+	private function parse( $json ) {
 		if ( $json ) {
 			$lessons = [];
 			
@@ -61,5 +70,9 @@ class GoogleCalendar {
 		}
 		
 		return false;
+	}
+	
+	public function test() {
+		return $this->request() !== false;
 	}
 }

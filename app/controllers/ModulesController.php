@@ -1,5 +1,7 @@
 <?php
 
+use WebCalendar\GoogleCalendar as Calendar;
+
 class ModulesController extends \BaseController {
 	protected $layout = '_layouts.default';
 	
@@ -37,14 +39,20 @@ class ModulesController extends \BaseController {
 		$module->end_date = Input::get( 'end_date' );
 		$module->calendar = Input::get( 'calendar' );
 		
+		// Check if attributes are valid.
 		if ( $module->validate() ) {
-			$module->save();
-			$module->courses()->sync( (array) Input::get( 'courses' ) );
-		} else {
-			return Redirect::back()->withInput();
+			$calendar = new Calendar( $module );
+			
+			// Check that calendar can be fetched.
+			if ( $calendar->test() ) {
+				$module->save();
+				$module->courses()->sync( (array) Input::get( 'courses' ) );
+				
+				return Redirect::route( 'admin.modules.index' );
+			}
 		}
 		
-		return Redirect::route( 'admin.modules.index' );
+		return Redirect::back()->withInput();
 	}
 	
 	/**
@@ -91,14 +99,20 @@ class ModulesController extends \BaseController {
 		$module->end_date = Input::get( 'end_date' );
 		$module->calendar = Input::get( 'calendar' );
 		
+		// Check if attributes are valid.
 		if ( $module->validate() ) {
-			$module->save();
-			$module->courses()->sync( (array) Input::get( 'courses' ) );
-		} else {
-			return Redirect::back()->withInput();
+			$calendar = new Calendar( $module );
+			
+			// Check that calendar can be fetched.
+			if ( $calendar->test() ) {
+				$module->save();
+				$module->courses()->sync( (array) Input::get( 'courses' ) );
+				
+				return Redirect::route( 'admin.modules.index' );
+			}
 		}
 		
-		return Redirect::route( 'admin.modules.index' );
+		return Redirect::back()->withInput();
 	}
 	
 	/**
