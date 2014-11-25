@@ -1,6 +1,7 @@
 @section( 'content' )
 
 <h2>Våra kurser</h2>
+
 <ul>
 	@if ( $courses )
 		@foreach ( $courses as $course )

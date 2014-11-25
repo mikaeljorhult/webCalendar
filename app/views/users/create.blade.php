@@ -2,6 +2,8 @@
 
 <h2>Skapa användare</h2>
 
+@include ( '_partials.errors' )
+
 {{ Form::open( array( 'route' => 'admin.users.store', 'method' => 'POST' ) ) }}
 	<ul>
 		<li>

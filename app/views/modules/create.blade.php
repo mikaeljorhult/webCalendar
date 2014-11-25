@@ -2,6 +2,8 @@
 
 <h2>Skapa delkurs</h2>
 
+@include ( '_partials.errors' )
+
 {{ Form::open( [ 'route' => 'admin.modules.store', 'method' => 'POST' ] ) }}
 	<ul>
 		<li>

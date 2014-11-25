@@ -16,7 +16,7 @@
 		@if ( $modules )
 			@foreach ( $modules as $module )
 				<tr>
-					<td>{{ HTML::link( URL::route( 'admin.modules.show', $module->id ), $module->name ) }}</td>
+					<td>{{ $module->name }}</td>
 					<td>{{ $module->start_date }}</td>
 					<td>{{ $module->end_date }}</td>
 					<td>{{ $module->calendar }}</td>

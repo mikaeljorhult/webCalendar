@@ -49,10 +49,14 @@ class ModulesController extends \BaseController {
 				$module->courses()->sync( (array) Input::get( 'courses' ) );
 				
 				return Redirect::route( 'admin.modules.index' );
+			} else {
+				$module->errors->add( 'calendar', 'Kalendern kan inte nås.' );
 			}
 		}
 		
-		return Redirect::back()->withInput();
+		return Redirect::back()
+			->withInput()
+			->withErrors( $module->errors );
 	}
 	
 	/**
@@ -109,10 +113,14 @@ class ModulesController extends \BaseController {
 				$module->courses()->sync( (array) Input::get( 'courses' ) );
 				
 				return Redirect::route( 'admin.modules.index' );
+			} else {
+				$module->errors->add( 'calendar', 'Kalendern kan inte nås.' );
 			}
 		}
 		
-		return Redirect::back()->withInput();
+		return Redirect::back()
+			->withInput()
+			->withErrors( $module->errors );
 	}
 	
 	/**

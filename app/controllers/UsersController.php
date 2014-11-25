@@ -65,11 +65,12 @@ class UsersController extends BaseController {
 		
 		if ( $user->validate() ) {
 			$user->save();
-		} else {
-			return Redirect::back()->withInput( Input::except( 'password' ) );
+			return Redirect::route( 'admin.users.index' );
 		}
 		
-		return Redirect::route( 'admin.users.index' );
+		return Redirect::back()
+			->withInput( Input::except( 'password' ) )
+			->withErrors( $user->errors );
 	}
 
 	/**
@@ -116,11 +117,12 @@ class UsersController extends BaseController {
 		
 		if ( $user->validate() ) {
 			$user->save();
-		} else {
-			return Redirect::back()->withInput( Input::except( 'password' ) );
+			return Redirect::route( 'admin.users.index' );
 		}
 		
-		return Redirect::route( 'admin.users.index' );
+		return Redirect::back()
+			->withInput( Input::except( 'password' ) )
+			->withErrors( $user->errors );
 	}
 
 	/**

@@ -8,6 +8,7 @@ class BaseModel extends Eloquent {
 		$v->setAttributeNames( static::$niceNames );
 		
 		if ( $v->passes() ) {
+			$this->errors = $v->messages();
 			return true;
 		}
 		

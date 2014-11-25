@@ -18,7 +18,7 @@ class Module extends BaseModel {
 		'name' => 'namn',
 		'start_date' => 'startdatum',
 		'end_date' => 'slutdatum',
-		'calendar' => 'kalender'
+		'calendar' => 'kalender-ID'
 	];
 	
 	/**
