@@ -38,11 +38,12 @@ class CoursesController extends \BaseController {
 		
 		if ( $course->validate() ) {
 			$course->save();
-		} else {
-			return Redirect::back()->withInput();
+			return Redirect::route( 'admin.courses.index' );
 		}
 		
-		return Redirect::route( 'admin.courses.index' );
+		return Redirect::back()
+			->withInput()
+			->withErrors( $course->errors );
 	}
 	
 	/**
@@ -103,9 +104,9 @@ class CoursesController extends \BaseController {
 					->with( 'modules', $modules )
 					->with( 'lessons', $lessons );
 			}
-		} else {
-			return Redirect::route( 'home' );
 		}
+		
+		return Redirect::route( 'home' );
 	}
 	
 	/**
@@ -145,11 +146,12 @@ class CoursesController extends \BaseController {
 		
 		if ( $course->validate() ) {
 			$course->save();
-		} else {
-			return Redirect::back()->withInput();
+			return Redirect::route( 'admin.courses.index' );
 		}
 		
-		return Redirect::route( 'admin.courses.index' );
+		return Redirect::back()
+			->withInput()
+			->withErrors( $course->errors );
 	}
 	
 	/**

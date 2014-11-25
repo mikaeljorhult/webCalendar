@@ -52,7 +52,9 @@ class ModulesController extends \BaseController {
 			}
 		}
 		
-		return Redirect::back()->withInput();
+		return Redirect::back()
+			->withInput()
+			->withErrors( $module->errors );
 	}
 	
 	/**
@@ -112,7 +114,9 @@ class ModulesController extends \BaseController {
 			}
 		}
 		
-		return Redirect::back()->withInput();
+		return Redirect::back()
+			->withInput()
+			->withErrors( $module->errors );
 	}
 	
 	/**
