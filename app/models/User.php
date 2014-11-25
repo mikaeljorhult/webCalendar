@@ -14,6 +14,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		'password' => [ 'required' ],
 		'email' => [ 'required', 'unique:users' ]
 	];
+	public static $niceNames = [
+		'username' => 'användarnamn',
+		'password' => 'lösenord',
+		'email' => 'e-postadress'
+	];
 	
 	/**
 	 * The database table used by the model.

@@ -9,6 +9,10 @@ class Course extends BaseModel {
 		'name' => [ 'required' ],
 		'code' => [ 'required', 'unique:courses' ]
 	];
+	public static $niceNames = [
+		'name' => 'namn',
+		'code' => 'kurskod'
+	];
 	
 	public function modules() {
 		return $this

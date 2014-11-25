@@ -14,6 +14,12 @@ class Module extends BaseModel {
 		'end_date' => [ 'required', 'date' ],
 		'calendar' => [ 'required' ]
 	];
+	public static $niceNames = [
+		'name' => 'namn',
+		'start_date' => 'startdatum',
+		'end_date' => 'slutdatum',
+		'calendar' => 'kalender'
+	];
 	
 	/**
 	 * Return the parent course.

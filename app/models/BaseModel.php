@@ -5,6 +5,7 @@ class BaseModel extends Eloquent {
 	
 	public function validate() {
 		$v = Validator::make( $this->attributes, static::$rules );
+		$v->setAttributeNames( static::$niceNames );
 		
 		if ( $v->passes() ) {
 			return true;
