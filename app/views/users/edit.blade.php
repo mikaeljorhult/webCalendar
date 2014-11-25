@@ -2,6 +2,8 @@
 
 <h2>Redigera {{ $user->username }}</h2>
 
+@include ( '_partials.errors' )
+
 {{ Form::model( $user, [ 'route' => [ 'admin.users.update', $user->id ], 'method' => 'PUT' ] ) }}
 	<ul>
 		<li>

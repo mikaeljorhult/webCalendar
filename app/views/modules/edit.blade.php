@@ -2,6 +2,8 @@
 
 <h2>Redigera {{ $module->title }}</h2>
 
+@include ( '_partials.errors' )
+
 {{ Form::model( $module, [ 'route' => [ 'admin.modules.update', $module->id ], 'method' => 'PUT' ] ) }}
 	<ul>
 		<li>

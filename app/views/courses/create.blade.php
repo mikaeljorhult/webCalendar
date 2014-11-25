@@ -2,6 +2,8 @@
 
 <h2>Skapa kurs</h2>
 
+@include ( '_partials.errors' )
+
 {{ Form::open( [ 'route' => 'admin.courses.store', 'method' => 'POST' ] ) }}
 	<ul>
 		<li>
