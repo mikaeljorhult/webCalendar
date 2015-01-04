@@ -7,7 +7,7 @@ class Course extends BaseModel {
 	protected $fillable = [ 'name', 'code' ];
 	public static $rules = [
 		'name' => [ 'required' ],
-		'code' => [ 'required', 'unique:courses' ]
+		'code' => [ 'required', 'unique:courses,code,{{id}}' ]
 	];
 	public static $niceNames = [
 		'name' => 'namn',
