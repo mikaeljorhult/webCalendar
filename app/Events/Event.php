@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace WebCalendar\Events;
 
 abstract class Event
 {
