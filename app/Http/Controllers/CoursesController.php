@@ -61,7 +61,7 @@ class CoursesController extends Controller
             $modules = $course->modules()->with('lessons')->get();
 
             $module_id = $course->modules()->lists('module_id');
-            $lessons = Lesson::whereIn('module_id', $module_id)->orderBy('start_time', 'ASC')->orderBy('title', 'ASC')->get();
+            $lessons = Lesson::whereIn('module_id', $module_id)->with('module')->orderBy('start_time', 'ASC')->orderBy('title', 'ASC')->get();
 
             foreach ($modules as $module) {
                 $sort_order[$module->id] = $module->pivot->sort_order;
