@@ -1,0 +1,117 @@
+@mixin grid-setup($namespace) {
+	.#{$namespace}-100 {
+		width: 100%;
+	}
+	.#{$namespace}-95 {
+		width: 95%;
+	}
+	.#{$namespace}-90 {
+		width: 90%;
+	}
+	.#{$namespace}-85 {
+		width: 85%;
+	}
+	.#{$namespace}-80 {
+		width: 80%;
+	}
+	.#{$namespace}-75 {
+		width: 75%;
+	}
+	.#{$namespace}-70 {
+		width: 70%;
+	}
+	.#{$namespace}-65 {
+		width: 65%;
+	}
+	.#{$namespace}-60 {
+		width: 60%;
+	}
+	.#{$namespace}-55 {
+		width: 55%;
+	}
+	.#{$namespace}-50 {
+		width: 50%;
+	}
+	.#{$namespace}-45 {
+		width: 45%;
+	}
+	.#{$namespace}-40 {
+		width: 40%;
+	}
+	.#{$namespace}-35 {
+		width: 35%;
+	}
+	.#{$namespace}-30 {
+		width: 30%;
+	}
+	.#{$namespace}-25 {
+		width: 25%;
+	}
+	.#{$namespace}-20 {
+		width: 20%;
+	}
+	.#{$namespace}-15 {
+		width: 15%;
+	}
+	.#{$namespace}-10 {
+		width: 10%;
+	}
+	.#{$namespace}-66 {
+		width: 66.666%;
+	}
+	.#{$namespace}-33 {
+		width: 33.333%;
+	}
+	.#{$namespace}-show {
+		display: block;
+	}
+	.#{$namespace}-hide {
+		display: none;
+	}
+}
+
+@mixin grid-setup-container() {
+	$half-gutter: $grid-gutter / 2;
+
+	.wrapper {
+		max-width: $grid-width;
+		margin: 0 auto;
+	}
+
+	.grids {
+		margin-left: -$grid-gutter;
+		overflow: hidden;
+		clear: both;
+
+		> * {
+			float: left;
+			padding-left: $grid-gutter;
+			width: 100%;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+
+			*:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.half-gutter {
+		margin-left: -$half-gutter;
+
+		> * {
+			padding-left: $half-gutter;
+		}
+	}
+}
+
+@mixin grid-adjust-wrap-width($width: 95%) {
+	.wrapper {
+		width: $width;
+
+		.wrapper {
+			width: auto;
+		}
+	}
+}

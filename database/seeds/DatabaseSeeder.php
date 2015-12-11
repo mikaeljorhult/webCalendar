@@ -14,7 +14,17 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        // Empty all tables.
+        foreach (['users', 'courses', 'modules', 'course_module', 'lessons'] as $table) {
+            DB::table($table)->delete();
+        }
+
+        // Populate tables.
+        $this->call(UsersTableSeeder::class);
+        $this->call(CoursesTableSeeder::class);
+        $this->call(ModulesTableSeeder::class);
+        $this->call(CourseModuleTableSeeder::class);
+        $this->call(LessonsTableSeeder::class);
 
         Model::reguard();
     }

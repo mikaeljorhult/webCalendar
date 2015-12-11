@@ -1,0 +1,104 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	position: relative;
+	padding: 1.3em 0.5em;
+	background-color: $html-background-color;
+	line-height: 1.5625em
+}
+
+body {
+	max-width: $grid-width;
+	margin: 0 auto;
+	padding: 0.6em 1em 0;
+	background-color: $body-background-color;
+	color: $text-color;
+	font-family: "Raleway", sans-serif;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+form {
+	ul {
+		padding-left: 0;
+		list-style: none;
+	}
+
+	li {
+		margin-bottom: 0.5em;
+	}
+}
+
+textarea {
+	overflow: auto;
+	vertical-align: top
+}
+
+label {
+	display: block;
+
+	input[type="checkbox"] + & {
+		display: inline-block;
+	}
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+textarea {
+	padding: 0.5em;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	font-size: 0.9em;
+	-moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, .25);
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .25);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, .25);
+
+	.main-content & {
+		min-width: 20em;
+	}
+}
+
+.button,
+button,
+input[type="submit"] {
+	padding: 0.5em 1.5em;
+	background-color: #a93413;
+	color: #fff;
+	border: none;
+	line-height: 1;
+
+	&:hover {
+		font-style: bold;
+	}
+
+	&.no-button {
+		padding: 0;
+		background-color: transparent;
+		color: #a93413;
+		line-height: inherit;
+	}
+}
+
+table {
+	width: 100%;
+	margin-bottom: 0.5em;
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+th {
+	font-weight: normal;
+	text-align: left
+}
+
+ul, ol {
+	margin: 0.15em 0 0.5em;
+	padding-left: 2em
+}
