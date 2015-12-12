@@ -97,6 +97,12 @@ tr {
 	&:hover {
 		background-color: lighten($brand-color-1, 60);
 	}
+
+	thead & {
+		&:hover {
+			background-color: transparent;
+		}
+	}
 }
 
 th {
@@ -118,13 +124,13 @@ ul, ol {
 }
 
 .icon-button {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	display: inline-block;
 	vertical-align: text-bottom;
 	float: right;
 	background: transparent none no-repeat center center;
-	background-size: 20px;
+	background-size: 18px;
 	color: transparent;
 	font: 0/0 a;
 }
