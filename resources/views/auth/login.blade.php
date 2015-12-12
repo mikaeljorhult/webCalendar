@@ -7,23 +7,25 @@
 	<form method="POST" action="/auth/login">
 		{!! csrf_field() !!}
 
-		<div>
-			E-post
-			<input type="email" name="email" value="{{ old('email') }}">
-		</div>
+		<ul>
+			<li>
+				<label>{{ trans('messages.email') }}</label>
+				<input type="email" name="email" value="{{ old('email') }}">
+			</li>
 
-		<div>
-			Lösenord
-			<input type="password" name="password" id="password">
-		</div>
+			<li>
+				<label>{{ trans('messages.password') }}</label>
+				<input type="password" name="password" id="password">
+			</li>
 
-		<div>
-			<input type="checkbox" name="remember"> Kom ihåg
-		</div>
+			<li>
+				<input type="checkbox" name="remember"> {{ trans('messages.remember') }}
+			</li>
 
-		<div>
-			<button type="submit">Logga in</button>
-		</div>
+			<li>
+				<button type="submit">{{ trans('messages.login') }}</button>
+			</li>
+		</ul>
 	</form>
 
 @stop
