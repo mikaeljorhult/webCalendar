@@ -1,17 +1,25 @@
-<li class="day{{ (date('Y-m-d', strtotime($day->first()->start_time)) == date('Y-m-d') ? ' today' : '') }} {{ (date('Y-m-d', strtotime($day->first()->start_time)) < date('Y-m-d') ? 'past' : '') }}">
-	<h4>{{ date('Y-m-d', strtotime($day->first()->start_time)) }}, {{ trans('weekdays.' . date('l', strtotime($day->first()->start_time))) }}</h4>
+<li class="day{{ $day->first()->start_time->isToday() ? ' today' : '' }} {{ $day->first()->start_time->isPast() ? 'past' : '' }}">
+	<h4>{{ $day->first()->start_time->format('Y-m-d') }}, {{ trans('weekdays.' . $day->first()->start_time->format('l')) }}</h4>
 
 	<div class="list-events">
-		<?php
-			$times = $day->groupBy(function ($item) {
-				return date('Hi', strtotime($item['start_time']));
-			});
-		?>
-
 		@foreach ($times as $time)
 			<div class="event-block">
 				@foreach ($time as $lesson)
-					@include ('_partials.schedule.lesson', $lesson)
+					<div class="event module-{{ $sort_order[$lesson->module->id] }}">
+						<span class="event-date">
+							{{ $lesson->start_time->format('H:i') }} - {{ $lesson->end_time->format('H:i') }}
+						</span>:
+
+						<span class="event-title">{{ $lesson->title }}</span>
+
+						@if (!empty($lesson->location))
+							<div class="event-location">{{ $lesson->location }}</div>
+						@endif
+
+						@if (!empty($lesson->description))
+							<div class="event-location">{{ $lesson->description }}</div>
+						@endif
+					</div>
 				@endforeach
 			</div>
 		@endforeach

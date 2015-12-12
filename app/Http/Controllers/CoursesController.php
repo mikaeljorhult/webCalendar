@@ -67,10 +67,6 @@ class CoursesController extends Controller
                 ->orderBy('title', 'ASC')
                 ->get();
 
-            $weeks = $lessons->groupBy(function ($item) {
-                return date('W', strtotime($item['start_time']));
-            });
-
             foreach ($modules as $module) {
                 $sort_order[$module->id] = $module->pivot->sort_order;
             }
@@ -78,7 +74,7 @@ class CoursesController extends Controller
             return view('courses.schedule')
                 ->with('course', $course)
                 ->with('modules', $modules)
-                ->with('weeks', $weeks)
+                ->with('lessons', $lessons)
                 ->with('sort_order', $sort_order);
         }
 

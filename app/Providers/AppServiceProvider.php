@@ -47,6 +47,30 @@ class AppServiceProvider extends ServiceProvider
 
             return ($return ? '<ul>' . $return . '</ul>' : '');
         });
+
+        view()->composer('courses.schedule', function ($view) {
+            $weeks = $view->getData()['lessons']->groupBy(function ($item) {
+                return $item->start_time->format('W');
+            });
+
+            $view->with('weeks', $weeks);
+        });
+
+        view()->composer('_partials.schedule.week', function ($view) {
+            $days = $view->getData()['week']->groupBy(function ($item) {
+                return $item->start_time->format('w');
+            });
+
+            $view->with('days', $days);
+        });
+
+        view()->composer('_partials.schedule.day', function ($view) {
+            $times = $view->getData()['day']->groupBy(function ($item) {
+                return $item->start_time->format('Hi');
+            });
+
+            $view->with('times', $times);
+        });
     }
 
     /**
