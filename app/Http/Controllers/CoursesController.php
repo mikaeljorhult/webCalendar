@@ -58,7 +58,7 @@ class CoursesController extends Controller
         $sort_order = [];
 
         if ($course) {
-            $modules = $course->modules()->with('lessons')->get();
+            $modules = $course->modules()->get();
 
             $module_id = $course->modules()->lists('module_id');
             $lessons = Lesson::whereIn('module_id', $module_id)->with('module')->orderBy('start_time', 'ASC')->orderBy('title', 'ASC')->get();
