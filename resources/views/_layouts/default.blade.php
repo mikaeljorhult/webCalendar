@@ -26,10 +26,10 @@
 
 		<ul class="nav">
 			@if (Auth::check())
-				<li>{!! link_to_route('admin.courses.index', 'Kurser') !!}</li>
-				<li>{!! link_to_route('admin.modules.index', 'Delkurser') !!}</li>
-				<li>{!! link_to_route('admin.users.index', 'Användare') !!}</li>
-				<li>{!! link_to_route('logout', 'Logga ut') !!}</li>
+				<li>{!! link_to_route('admin.courses.index', trans('messages.courses')) !!}</li>
+				<li>{!! link_to_route('admin.modules.index', trans('messages.modules')) !!}</li>
+				<li>{!! link_to_route('admin.users.index', trans('messages.users')) !!}</li>
+				<li>{!! link_to_route('logout', trans('messages.logout')) !!}</li>
 			@endif
 		</ul>
 	</header>

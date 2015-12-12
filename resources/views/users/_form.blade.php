@@ -1,17 +1,17 @@
 <ul>
 	<li>
-		{!! Form::label('username', 'Användarnamn') !!}
-		{!! Form::text('username', null, ['placeholder' => 'Användarnamn']) !!}
+		{!! Form::label('username', trans('messages.username')) !!}
+		{!! Form::text('username', null, ['placeholder' => trans('messages.username')]) !!}
 	</li>
 
 	<li>
-		{!! Form::label('password', 'Lösenord') !!}
-		{!! Form::password('password', ['placeholder' => 'Lösenord']) !!}
+		{!! Form::label('password', trans('messages.password')) !!}
+		{!! Form::password('password', ['placeholder' => trans('messages.password')]) !!}
 	</li>
 
 	<li>
-		{!! Form::label('email', 'E-postadress') !!}
-		{!! Form::text('email', null, ['placeholder' => 'E-postadress']) !!}
+		{!! Form::label('email', trans('messages.email')) !!}
+		{!! Form::text('email', null, ['placeholder' => trans('messages.email')]) !!}
 	</li>
 
 	<li>

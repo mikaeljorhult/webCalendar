@@ -2,6 +2,6 @@
 
 @section( 'content' )
 
-	<h2>Administrera</h2>
+	<h2>{{ trans('messages.administration') }}</h2>
 
 @stop

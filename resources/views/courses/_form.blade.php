@@ -1,16 +1,17 @@
 <ul>
 	<li>
-		{!! Form::label('name', 'Namn') !!}
+		{!! Form::label('name', trans('messages.name')) !!}
 		{!! Form::text('name') !!}
 	</li>
 
 	<li>
-		{!! Form::label('code', 'Kurskod') !!}
+		{!! Form::label('code', trans('messages.course-code')) !!}
 		{!! Form::text('code') !!}
 	</li>
 
 	<li>
-		{!! Form::label('modules', 'Delkurser') !!}
+		{!! Form::label('modules', trans('messages.modules')) !!}
+
 		@if (count($course->modules) > 0)
 			<ul class="sortable">
 				@foreach ($course->modules as $module)

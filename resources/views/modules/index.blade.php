@@ -2,14 +2,14 @@
 
 @section ('content')
 
-	<h2>Delkurser</h2>
+	<h2>{{ trans('messages.modules') }}</h2>
 	<table cellpadding="0" cellspacing="0">
 		<thead>
 		<tr>
-			<th>Namn</th>
-			<th>Startdatum</th>
-			<th>Slutdatum</th>
-			<th>Kalender</th>
+			<th>{{ trans('messages.name') }}</th>
+			<th>{{ trans('messages.start-date') }}</th>
+			<th>{{ trans('messages.end-date') }}</th>
+			<th>{{ trans('messages.calendar') }}</th>
 			<th class="icon-column">&nbsp;</th>
 			<th class="icon-column">&nbsp;</th>
 		</tr>
@@ -21,23 +21,23 @@
 					<td>{{ $module->start_date }}</td>
 					<td>{{ $module->end_date }}</td>
 					<td>{{ $module->calendar }}</td>
-					<td>{!! link_to_route('admin.modules.edit', 'Redigera', $module->id, ['class' => 'icon-button icon-edit'])  !!}</td>
+					<td>{!! link_to_route('admin.modules.edit', trans('messages.edit'), $module->id, ['class' => 'icon-button icon-edit'])  !!}</td>
 					<td>
 						{!! Form::open(['route' => ['admin.modules.destroy', $module->id], 'method' => 'DELETE']) !!}
-						{!! Form::submit('Radera', ['class' => 'no-button icon-button icon-delete']) !!}
+						{!! Form::submit(trans('messages.delete'), ['class' => 'no-button icon-button icon-delete']) !!}
 						{!! Form::close() !!}
 					</td>
 				</tr>
 			@empty
 				<tr>
-					<td>Det finns inga delkurser i systemet.</td>
+					<td>{{ trans('messages.no-modules') }}</td>
 				</tr>
 			@endforelse
 		</tbody>
 	</table>
 
 	<p>
-		{!! link_to_route('admin.modules.create', 'Skapa ny delkurs', [], ['class' => 'button']) !!}
+		{!! link_to_route('admin.modules.create', trans('messages.create-new-module'), [], ['class' => 'button']) !!}
 	</p>
 
 @stop

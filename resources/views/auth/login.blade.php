@@ -2,7 +2,7 @@
 
 @section ('content')
 
-	<h2>Logga in</h2>
+	<h2>{{ trans('messages.login') }}</h2>
 
 	<form method="POST" action="/auth/login">
 		{!! csrf_field() !!}

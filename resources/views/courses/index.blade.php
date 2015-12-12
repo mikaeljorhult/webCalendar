@@ -18,24 +18,24 @@
 				<tr>
 					<td>{!! link_to_route('admin.courses.edit', $course->name, $course->id) !!}</td>
 					<td>{{ $course->code }}</td>
-					<td>{!! link_to_route('admin.courses.edit', 'Redigera', $course->id, ['class' => 'icon-button icon-edit']) !!}</td>
+					<td>{!! link_to_route('admin.courses.edit', trans('messages.edit'), $course->id, ['class' => 'icon-button icon-edit']) !!}</td>
 					<td>
 						{!! Form::open(['route' => ['admin.courses.destroy', $course->id], 'method' => 'DELETE']) !!}
-						{!! Form::submit('Radera', ['class' => 'no-button icon-button icon-delete']) !!}
+						{!! Form::submit(trans('messages.delete'), ['class' => 'no-button icon-button icon-delete']) !!}
 						{!! Form::close() !!}
 					</td>
 				</tr>
 			@endforeach
 		@else
 			<tr>
-				<td>Det finns inga kurser i systemet.</td>
+				<td>{{ trans('messages.no-courses') }}</td>
 			</tr>
 		@endif
 		</tbody>
 	</table>
 
 	<p>
-		{!! link_to_route('admin.courses.create', 'Skapa ny kurs', [], ['class' => 'button']) !!}
+		{!! link_to_route('admin.courses.create', trans('messages.create-new-course'), [], ['class' => 'button']) !!}
 	</p>
 
 @stop

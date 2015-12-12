@@ -2,12 +2,12 @@
 
 @section ('content')
 
-	<h2>Redigera {{ $module->title }}</h2>
+	<h2>{{ trans('messages.edit') }} {{ $module->title }}</h2>
 
 	@include ('_partials.errors')
 
 	{!! Form::model($module, ['route' => ['admin.modules.update', $module->id], 'method' => 'PUT']) !!}
-		@include ('modules._form', ['submitButtonText' => 'Uppdatera'])
+		@include ('modules._form', ['submitButtonText' => trans('messages.update')])
 	{!! Form::close() !!}
 
 @stop

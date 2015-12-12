@@ -2,12 +2,12 @@
 
 @section ('content')
 
-	<h2>Skapa delkurs</h2>
+	<h2>{{ trans('messages.create-module') }}</h2>
 
 	@include ('_partials.errors')
 
 	{!! Form::model($module = new \WebCalendar\Module, ['route' => 'admin.modules.store']) !!}
-		@include ('modules._form', ['submitButtonText' => 'Skapa delkurs'])
+		@include ('modules._form', ['submitButtonText' => trans('messages.create-module')])
 	{!! Form::close() !!}
 
 @stop
