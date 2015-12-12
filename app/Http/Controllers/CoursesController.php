@@ -61,7 +61,15 @@ class CoursesController extends Controller
             $modules = $course->modules()->get();
 
             $module_id = $course->modules()->lists('module_id');
-            $lessons = Lesson::whereIn('module_id', $module_id)->with('module')->orderBy('start_time', 'ASC')->orderBy('title', 'ASC')->get();
+            $lessons = Lesson::whereIn('module_id', $module_id)
+                ->with('module')
+                ->orderBy('start_time', 'ASC')
+                ->orderBy('title', 'ASC')
+                ->get();
+
+            $weeks = $lessons->groupBy(function ($item) {
+                return date('W', strtotime($item['start_time']));
+            });
 
             foreach ($modules as $module) {
                 $sort_order[$module->id] = $module->pivot->sort_order;
@@ -70,7 +78,7 @@ class CoursesController extends Controller
             return view('courses.schedule')
                 ->with('course', $course)
                 ->with('modules', $modules)
-                ->with('lessons', $lessons)
+                ->with('weeks', $weeks)
                 ->with('sort_order', $sort_order);
         }
 
