@@ -3,10 +3,10 @@
 
   /*--- $VARIABLES ---*/
   var $modules,
-      $sortable,
       $weeks,
       $days,
-      $events;
+      $events,
+      sortable;
 
 
   /*--- DELEGATE ---*/
@@ -113,7 +113,6 @@
   /*--- DOM READY ---*/
   $document.ready(function () {
     $modules = $('#modules');
-    $sortable = $('.sortable');
 
     // Check if current page is course page.
     if ($modules.length > 0) {
@@ -127,9 +126,10 @@
     }
 
     // Make sortable lists sortable.
-    if ($sortable.length > 0) {
-      $sortable.sortable();
-      $sortable.disableSelection();
+    sortable = document.getElementById('modules-list');
+
+    if (sortable != null) {
+      Sortable.create(sortable);
     }
   });
 })(jQuery, jQuery(document));

@@ -13,7 +13,7 @@
 		{!! Form::label('modules', trans('messages.modules')) !!}
 
 		@if (count($course->modules) > 0)
-			<ul class="sortable">
+			<ul id="modules-list" class="sortable">
 				@foreach ($course->modules as $module)
 					<li>
 						<input type="hidden" name="modules[]" value="{{ $module->id }}" />

@@ -18,7 +18,7 @@ elixir(function(mix) {
     .scripts('modernizr.js')
     .scripts([
       'jquery.js',
-      'jquery-ui.js'
+      'sortable.js'
     ], './public/js/vendor.js')
     .version([
       'js/modernizr.js',
