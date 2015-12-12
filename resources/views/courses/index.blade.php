@@ -1,6 +1,6 @@
 @extends ('_layouts/default')
 
-@section('content')
+@section ('content')
 
 	<h2>Kurser</h2>
 	<table cellpadding="0" cellspacing="0">
@@ -8,8 +8,8 @@
 		<tr>
 			<th>Namn</th>
 			<th>Kurskod</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -18,10 +18,10 @@
 				<tr>
 					<td>{!! link_to_route('admin.courses.edit', $course->name, $course->id) !!}</td>
 					<td>{{ $course->code }}</td>
-					<td>{!! link_to_route('admin.courses.edit', 'Redigera', $course->id) !!}</td>
+					<td>{!! link_to_route('admin.courses.edit', 'Redigera', $course->id, ['class' => 'icon-button icon-edit']) !!}</td>
 					<td>
 						{!! Form::open(['route' => ['admin.courses.destroy', $course->id], 'method' => 'DELETE']) !!}
-						{!! Form::submit('Radera', ['class' => 'no-button']) !!}
+						{!! Form::submit('Radera', ['class' => 'no-button icon-button icon-delete']) !!}
 						{!! Form::close() !!}
 					</td>
 				</tr>

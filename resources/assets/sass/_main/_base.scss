@@ -90,15 +90,49 @@ table {
 	width: 100%;
 	margin-bottom: 0.5em;
 	border-collapse: collapse;
-	border-spacing: 0
+	border-spacing: 0;
+}
+
+tr {
+	&:hover {
+		background-color: lighten($brand-color-1, 60);
+	}
 }
 
 th {
 	font-weight: normal;
-	text-align: left
+	text-align: left;
+}
+
+th,
+td {
+	&.icon-column {
+		width: 26px;
+		text-align: right;
+	}
 }
 
 ul, ol {
 	margin: 0.15em 0 0.5em;
-	padding-left: 2em
+	padding-left: 2em;
+}
+
+.icon-button {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: text-bottom;
+	float: right;
+	background: transparent none no-repeat center center;
+	background-size: 20px;
+	color: transparent;
+	font: 0/0 a;
+}
+
+.icon-delete {
+	background-image: url('../img/delete.png');
+}
+
+.icon-edit {
+	background-image: url('../img/edit.png');
 }

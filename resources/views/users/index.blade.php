@@ -8,8 +8,8 @@
 		<tr>
 			<th>Användarnamn</th>
 			<th>E-postadress</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -17,11 +17,11 @@
 				<tr>
 					<td>{!! link_to_route('admin.users.edit', $user->username, $user->id) !!}</td>
 					<td>{{ $user->email }}</td>
-					<td>{!! link_to_route('admin.users.edit', 'Redigera', $user->id) !!}</td>
+					<td>{!! link_to_route('admin.users.edit', 'Redigera', $user->id, ['class' => 'icon-button icon-edit']) !!}</td>
 					<td>
 						@if ($user->id != Auth::user()->id)
 							{!! Form::open(['route' => ['admin.users.destroy', $user->id], 'method' => 'DELETE']) !!}
-							{!! Form::submit('Radera', ['class' => 'no-button']) !!}
+							{!! Form::submit('Radera', ['class' => 'no-button icon-button icon-delete']) !!}
 							{!! Form::close() !!}
 						@else
 							&nbsp;

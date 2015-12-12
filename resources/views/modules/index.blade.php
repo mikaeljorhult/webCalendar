@@ -10,8 +10,8 @@
 			<th>Startdatum</th>
 			<th>Slutdatum</th>
 			<th>Kalender</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
+			<th class="icon-column">&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -21,10 +21,10 @@
 					<td>{{ $module->start_date }}</td>
 					<td>{{ $module->end_date }}</td>
 					<td>{{ $module->calendar }}</td>
-					<td>{!! link_to_route('admin.modules.edit', 'Redigera', $module->id)  !!}</td>
+					<td>{!! link_to_route('admin.modules.edit', 'Redigera', $module->id, ['class' => 'icon-button icon-edit'])  !!}</td>
 					<td>
 						{!! Form::open(['route' => ['admin.modules.destroy', $module->id], 'method' => 'DELETE']) !!}
-						{!! Form::submit('Radera', ['class' => 'no-button']) !!}
+						{!! Form::submit('Radera', ['class' => 'no-button icon-button icon-delete']) !!}
 						{!! Form::close() !!}
 					</td>
 				</tr>
