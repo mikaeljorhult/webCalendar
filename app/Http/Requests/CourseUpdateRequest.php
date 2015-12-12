@@ -25,7 +25,7 @@ class CourseUpdateRequest extends Request
     {
         return [
             'name' => ['required'],
-            'code' => ['required', 'unique:courses,code,{{id}}']
+            'code' => ['required', 'unique:courses,code,' . $this->route('courses')->id]
         ];
     }
 }
