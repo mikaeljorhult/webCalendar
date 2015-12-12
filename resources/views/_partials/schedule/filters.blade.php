@@ -14,5 +14,5 @@
 	@endif
 
 	<input type="checkbox" name="hide-past" id="hide-past" />
-	<label for="hide-past">Dölj passerade datum</label>
+	<label for="hide-past">{{ trans('messages.hide-past-dates') }}</label>
 </aside>

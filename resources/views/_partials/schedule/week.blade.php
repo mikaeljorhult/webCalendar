@@ -1,5 +1,5 @@
 <li class="week">
-	<h3>Vecka {{ date('W', strtotime($week->first()->start_time)) }}</h3>
+	<h3>{{ trans('messages.week') }} {{ date('W', strtotime($week->first()->start_time)) }}</h3>
 
 	<ul class="list-days">
 		<?php
