@@ -24,8 +24,8 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
-            'username' => [ 'required' ],
-            'email' => [ 'required', 'unique:users,email,' . $this->route('users')->id ]
+            'username' => ['required'],
+            'email' => ['required', 'unique:users,email,' . $this->route('users')->id]
         ];
     }
 }

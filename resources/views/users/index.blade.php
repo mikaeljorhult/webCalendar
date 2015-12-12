@@ -13,8 +13,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		@if ($users)
-			@foreach ($users as $user)
+			@forelse ($users as $user)
 				<tr>
 					<td>{!! link_to_route('admin.users.edit', $user->username, $user->id) !!}</td>
 					<td>{{ $user->email }}</td>
@@ -29,12 +28,11 @@
 						@endif
 					</td>
 				</tr>
-			@endforeach
-		@else
-			<tr>
-				<td>Det finns inga användare i systemet.</td>
-			</tr>
-		@endif
+			@empty
+				<tr>
+					<td>Det finns inga användare i systemet.</td>
+				</tr>
+			@endforelse
 		</tbody>
 	</table>
 

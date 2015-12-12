@@ -15,8 +15,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		@if ($modules)
-			@foreach ($modules as $module)
+			@forelse ($modules as $module)
 				<tr>
 					<td>{!! link_to_route('admin.modules.edit', $module->name, $module->id) !!}</td>
 					<td>{{ $module->start_date }}</td>
@@ -29,12 +28,11 @@
 						{!! Form::close() !!}
 					</td>
 				</tr>
-			@endforeach
-		@else
-			<tr>
-				<td>Det finns inga delkurser i systemet.</td>
-			</tr>
-		@endif
+			@empty
+				<tr>
+					<td>Det finns inga delkurser i systemet.</td>
+				</tr>
+			@endforelse
 		</tbody>
 	</table>
 

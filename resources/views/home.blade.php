@@ -1,17 +1,15 @@
 @extends ('_layouts/default')
 
-@section( 'content' )
+@section ( 'content' )
 
 	<h2>Våra kurser</h2>
 
 	<ul>
-		@if ( $courses )
-			@foreach ( $courses as $course )
-				<li>{!! link_to( '/schedule/' . $course->code, $course->name . ' (' . $course->code . ')' ) !!}</li>
-			@endforeach
-		@else
+		@forelse ($courses as $course)
+			<li>{!! link_to( '/schedule/' . $course->code, $course->name . ' (' . $course->code . ')' ) !!}</li>
+		@empty
 			<li>Det finns inga aktiva kurser.</li>
-		@endif
+		@endforelse
 	</ul>
 
 @stop
