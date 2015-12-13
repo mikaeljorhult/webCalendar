@@ -5,9 +5,7 @@
   var $modules,
       $weeks,
       $days,
-      $events,
-      sortable;
-
+      $events;
 
   /*--- DELEGATE ---*/
   $document
@@ -123,13 +121,6 @@
       init_filters();
       calculate_modules();
       calculate_hidden();
-    }
-
-    // Make sortable lists sortable.
-    sortable = document.getElementById('modules-list');
-
-    if (sortable != null) {
-      Sortable.create(sortable);
     }
   });
 })(jQuery, jQuery(document));

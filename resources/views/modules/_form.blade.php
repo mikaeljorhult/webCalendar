@@ -6,12 +6,12 @@
 
 	<li>
 		{!! Form::label('start_date', trans('messages.start-date')) !!}
-		{!! Form::text('start_date') !!}
+		{!! Form::input('date', 'start_date') !!}
 	</li>
 
 	<li>
 		{!! Form::label('end_date', trans('messages.end-date')) !!}
-		{!! Form::text('end_date') !!}
+		{!! Form::input('date', 'end_date') !!}
 	</li>
 
 	<li>

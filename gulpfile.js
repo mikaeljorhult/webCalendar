@@ -15,14 +15,15 @@ elixir(function(mix) {
   mix
     .sass('app.scss')
     .browserify('app.js')
+    .browserify('admin.js')
     .scripts('modernizr.js')
     .scripts([
-      'jquery.js',
-      'sortable.js'
+      'jquery.js'
     ], './public/js/vendor.js')
     .version([
       'js/modernizr.js',
       'js/vendor.js',
+      'js/admin.js',
       'css/app.css',
       'js/app.js'
     ])
