@@ -2,18 +2,10 @@
 
 namespace WebCalendar\Importers;
 
-use \GuzzleHttp\Client;
 use \DateTime;
 
-class GoogleCalendar
+class GoogleCalendar extends Importer
 {
-    private $module;
-
-    public function __construct($module)
-    {
-        $this->module = $module;
-    }
-
     private function url()
     {
         $url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->module->calendar . '/events';
@@ -45,18 +37,6 @@ class GoogleCalendar
         return false;
     }
 
-    private function request()
-    {
-        $client = new Client();
-        $response = $client->get($this->url(), ['exceptions' => false]);
-
-        if ($response->getStatusCode() === 200) {
-            return $response;
-        }
-
-        return false;
-    }
-
     private function parse($json)
     {
         if ($json) {
@@ -78,10 +58,5 @@ class GoogleCalendar
         }
 
         return false;
-    }
-
-    public function test()
-    {
-        return $this->request() !== false;
     }
 }
