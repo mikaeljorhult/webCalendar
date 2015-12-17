@@ -1,4 +1,4 @@
-# webCalendar2
+# webCalendar
 
 Fetch and display multiple Google calendars as one single schedule.
 
@@ -7,16 +7,15 @@ Just place the files on your web server and run `composer install`.
 
 ## Environment variables
 
-Database credentials as well as default password is determined by a `.env.php` file.
+Database credentials as well as default password is determined by a `.env` file. Change the database credentials and
+the last two lines to match your environment.
 
-```php
-<?php
+```
+DB_HOST=localhost
+DB_DATABASE=webcalendar
+DB_USERNAME=homestead
+DB_PASSWORD=secret
 
-return [
-	'DB_NAME' => 'webcalendar',
-	'DB_USER' => 'webcalendar',
-	'DB_PASS' => 'database-password',
-	'DEFAULT_PASSWORD' => 'user-password',
-	'API_KEY' => 'google-calendar-api-key'
-];
+DEFAULT_PASSWORD=user-password
+API_KEY=google-calendar-api-key
 ```
