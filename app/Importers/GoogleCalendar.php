@@ -11,8 +11,8 @@ class GoogleCalendar extends Importer
         $url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->module->calendar . '/events';
         $parameters = [
             'singleEvents' => 'true',
-            'timeMin' => $this->module->start_date . 'T00:00:00.000Z',
-            'timeMax' => $this->module->end_date . 'T23:59:59.000Z',
+            'timeMin' => $this->module->start_date->format('Y-m-d') . 'T00:00:00.000Z',
+            'timeMax' => $this->module->end_date->format('Y-m-d') . 'T23:59:59.000Z',
             'orderBy' => 'startTime',
             'maxResults' => '500',
             'key' => getenv('API_KEY')

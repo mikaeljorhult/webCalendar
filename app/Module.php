@@ -9,8 +9,8 @@ use WebCalendar\Importers\GoogleCalendar as Calendar;
 
 class Module extends Model
 {
-    public $timestamps = false;
     protected $fillable = ['course_id', 'name', 'start_date', 'end_date', 'calendar'];
+    protected $dates = ['start_date', 'end_date'];
 
     /**
      * Return the parent course.

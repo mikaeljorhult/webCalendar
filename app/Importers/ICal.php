@@ -27,7 +27,7 @@ class ICal extends Importer
     {
         if ($body) {
             $calendar = Reader::read($body, Reader::OPTION_FORGIVING)
-                ->expand(new DateTime($this->module->start_date), new DateTime($this->module->end_date));
+                ->expand($this->module->start_date, $this->module->end_date);
 
             $lessons = [];
 
