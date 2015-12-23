@@ -60,7 +60,7 @@ class CoursesController extends Controller
         if ($course) {
             $modules = $course->modules()->get();
 
-            $module_id = $course->modules()->lists('module_id');
+            $module_id = $course->modules()->pluck('module_id');
             $lessons = Lesson::whereIn('module_id', $module_id)
                 ->with('module')
                 ->orderBy('start_time', 'ASC')
@@ -91,7 +91,7 @@ class CoursesController extends Controller
     {
         $modules = $course->modules()->with('lessons')->get();
 
-        $module_id = $course->modules()->lists('module_id');
+        $module_id = $course->modules()->pluck('module_id');
         $lessons = Lesson::whereIn('module_id', $module_id)->orderBy('start_time', 'ASC')->orderBy('title',
             'ASC')->get();
 

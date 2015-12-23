@@ -18,8 +18,8 @@
 			@forelse ($modules as $module)
 				<tr>
 					<td>{!! link_to_route('admin.modules.edit', $module->name, $module->id) !!}</td>
-					<td>{{ $module->start_date }}</td>
-					<td>{{ $module->end_date }}</td>
+					<td>{{ $module->start_date->format('Y-m-d') }}</td>
+					<td>{{ $module->end_date->format('Y-m-d') }}</td>
 					<td>{{ $module->calendar }}</td>
 					<td>{!! link_to_route('admin.modules.edit', trans('messages.edit'), $module->id, ['class' => 'icon-button icon-edit'])  !!}</td>
 					<td>

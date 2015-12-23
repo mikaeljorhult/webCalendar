@@ -18,18 +18,17 @@ class Course extends Model
 
     public function scopeActive($query)
     {
+        // Get all active modules.
         $modules = Module::with('courses')
             ->active()
             ->get();
 
-        $ids = [0];
+        // Pluck IDs of all related courses and return array.
+        $courses = $modules->map(function ($module) {
+            return $module->courses->pluck('id')->all();
+        })->flatten();
 
-        if (count($modules) > 0) {
-            foreach ($modules as $module) {
-                $ids = array_merge($ids, $module->courses->lists('id')->all());
-            }
-        }
-
-        return $query->with('modules')->whereIn('id', array_unique($ids));
+        // Attach to query and request unique results.
+        return $query->with('modules')->whereIn('id', $courses)->distinct();
     }
 }
