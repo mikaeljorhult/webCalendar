@@ -6,12 +6,12 @@
 
 	<li>
 		{!! Form::label('start_date', trans('messages.start-date')) !!}
-		{!! Form::input('date', 'start_date') !!}
+		{!! Form::date('start_date', $module->start_date) !!}
 	</li>
 
 	<li>
 		{!! Form::label('end_date', trans('messages.end-date')) !!}
-		{!! Form::input('date', 'end_date') !!}
+		{!! Form::date('end_date', $module->end_date) !!}
 	</li>
 
 	<li>
@@ -21,7 +21,7 @@
 
 	<li>
 		{!! Form::label('courses', trans('messages.courses')) !!}
-		{!! Form::courseCheckbox('courses', $module->courses->lists('id')->all()) !!}
+		{!! Form::courseCheckbox('courses', $module->courses->pluck('id')->all()) !!}
 	</li>
 
 	<li>
