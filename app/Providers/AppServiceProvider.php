@@ -5,7 +5,6 @@ namespace WebCalendar\Providers;
 use Collective\Html\FormFacade as Form;
 use WebCalendar\Course;
 use WebCalendar\Module;
-use WebCalendar\Importers\GoogleCalendar as Calendar;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -19,16 +18,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::extend('connectable', function ($attribute, $value) {
+        Validator::extend('connectable', function ($attribute, $value, $parameters, $validator) {
             // Create mock module to test URL with.
-            $module = new Module([
-                'name' => 'Connectable Calendar',
-                'start_date' => date('Y-m-d', strtotime('-2 days')) . 'T00:00:00.000Z',
-                'end_date' => date('Y-m-d', strtotime('+2 days')) . 'T00:00:00.000Z',
-                'url' => $value
-            ]);
-
-            $calendar = new Calendar($module);
+            $module = new Module($validator->getData());
+            $calendar = $module->importer();
 
             return $calendar->test();
         });

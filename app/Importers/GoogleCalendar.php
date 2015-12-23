@@ -6,7 +6,7 @@ use \DateTime;
 
 class GoogleCalendar extends Importer
 {
-    private function url()
+    protected function url()
     {
         $url = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->module->calendar . '/events';
         $parameters = [

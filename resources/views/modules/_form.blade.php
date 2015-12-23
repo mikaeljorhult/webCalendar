@@ -15,7 +15,11 @@
 	</li>
 
 	<li>
-		{!! Form::label('calendar', trans('messages.calendar-id')) !!}
+		{!! Form::label('type', trans('messages.calendar')) !!}
+		{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'webcal' => 'WebCal']) !!}
+
+		<br />
+
 		{!! Form::text('calendar') !!}
 	</li>
 
