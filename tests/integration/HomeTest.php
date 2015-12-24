@@ -4,16 +4,18 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class BaseTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
-     * A basic functional test example.
+     * Check that front page is available.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testFrontPage()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('webCalendar');
     }
 }

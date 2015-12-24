@@ -14,17 +14,15 @@ class CreateModulesTable extends Migration
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
 
             $table->string('name', 75);
+            $table->date('start_date')->index();
+            $table->date('end_date')->index();
+            $table->string('type', 16)->default('google');
             $table->string('calendar');
-            $table->date('start_date');
-            $table->date('end_date');
 
             $table->timestamps();
-
-            $table->index('name');
         });
     }
 

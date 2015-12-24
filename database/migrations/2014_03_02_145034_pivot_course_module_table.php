@@ -17,7 +17,7 @@ class PivotCourseModuleTable extends Migration
             $table->increments('id');
             $table->integer('course_id')->unsigned()->index();
             $table->integer('module_id')->unsigned()->index();
-            $table->integer('sort_order')->unsigned();
+            $table->integer('sort_order')->unsigned()->default('1');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
         });
