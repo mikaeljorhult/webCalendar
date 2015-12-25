@@ -19,7 +19,7 @@
 					<td>{{ $user->email }}</td>
 					<td>{!! link_to_route('admin.users.edit', trans('messages.edit'), $user->id, ['class' => 'icon-button icon-edit']) !!}</td>
 					<td>
-						@if ($user->id != Auth::user()->id)
+						@if (Auth::check() && $user->id != Auth::user()->id)
 							{!! Form::open(['route' => ['admin.users.destroy', $user->id], 'method' => 'DELETE']) !!}
 							{!! Form::submit(trans('messages.delete'), ['class' => 'no-button icon-button icon-delete']) !!}
 							{!! Form::close() !!}
