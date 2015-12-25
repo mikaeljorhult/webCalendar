@@ -11,6 +11,8 @@
 |
 */
 
+use Carbon\Carbon;
+
 $factory->define(WebCalendar\User::class, function (Faker\Generator $faker) {
     return [
         'username' => str_random(5),
@@ -39,6 +41,24 @@ $factory->define(WebCalendar\Module::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->defineAs(WebCalendar\Module::class, 'active', function (Faker\Generator $faker) use ($factory) {
+    $module = $factory->raw(WebCalendar\Module::class);
+
+    return array_merge($module, [
+        'start_date' => Carbon::now(),
+        'end_date' => Carbon::now()->addDays(1)
+    ]);
+});
+
+$factory->defineAs(WebCalendar\Module::class, 'inactive', function (Faker\Generator $faker) use ($factory) {
+    $module = $factory->raw(WebCalendar\Module::class);
+
+    return array_merge($module, [
+        'start_date' => Carbon::now()->subDays(2),
+        'end_date' => Carbon::now()->subDays(1)
+    ]);
+});
+
 $factory->define(WebCalendar\Lesson::class, function (Faker\Generator $faker) {
     $date = $faker->dateTimeBetween('-1 month', '+1 month');
 
@@ -53,7 +73,6 @@ $factory->define(WebCalendar\Lesson::class, function (Faker\Generator $faker) {
     );
 
     return [
-        'module_id' => 0,
         'title' => trim($faker->sentence(rand(1, 5)), ' .'),
         'location' => $faker->word() . ', Mediehuset',
         'description' => $faker->paragraph(),
