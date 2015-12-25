@@ -6,10 +6,12 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(WebCalendar\User::class, 10)->create([
+        factory(WebCalendar\User::class)->create([
             'username' => 'test',
             'password' => getenv('DEFAULT_PASSWORD'),
             'email' => 'test@test.com'
         ]);
+
+        factory(WebCalendar\User::class, 10)->create();
     }
 }
