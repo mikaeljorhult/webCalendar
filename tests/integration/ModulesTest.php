@@ -1,8 +1,5 @@
 <?php
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Subscriber\Mock;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -10,28 +7,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ModulesTest extends TestCase
 {
     use DatabaseMigrations, WithoutMiddleware;
-
-    /**
-     * Mock Guzzle and setup HTTP responses.
-     *
-     * @param array $responses
-     */
-    private function setHttpResponses(array $responses = [])
-    {
-        // Default to one response of 200 OK.
-        if (count($responses) == 0) {
-            $responses[] = new Response(200, []);
-        }
-
-        // Setup client and attach responses.
-        $client = new Client();
-        $mock = new Mock($responses);
-
-        $client->getEmitter()->attach($mock);
-
-        // Replace Guzzle with mock in service container.
-        app()->instance('\GuzzleHttp\Client', $client);
-    }
 
     /**
      * Check that modules index is available.
