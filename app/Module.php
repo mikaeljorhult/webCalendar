@@ -99,17 +99,17 @@ class Module extends Model
     {
         switch ($this->type) {
             case 'ical':
-                $importer = new ICal($this);
+                $importer = '\WebCalendar\Importers\ICal';
                 break;
 
             case 'webcal':
-                $importer = new WebCal($this);
+                $importer = '\WebCalendar\Importers\WebCal';
                 break;
 
             default:
-                $importer = new GoogleCalendar($this);
+                $importer = '\WebCalendar\Importers\GoogleCalendar';
         }
 
-        return $importer;
+        return app()->make($importer, [$this]);
     }
 }

@@ -2,16 +2,15 @@
 
 namespace WebCalendar\Importers;
 
-use \GuzzleHttp\Client;
-use \DateTime;
-
 class Importer
 {
+    protected $client;
     protected $module;
 
-    public function __construct($module)
+    public function __construct($module, \GuzzleHttp\Client $client)
     {
         $this->module = $module;
+        $this->client = $client;
     }
 
     protected function url()
@@ -21,8 +20,7 @@ class Importer
 
     protected function request()
     {
-        $client = new Client();
-        $response = $client->get($this->url(), ['exceptions' => false]);
+        $response = $this->client->get($this->url(), ['exceptions' => false]);
 
         if ($response->getStatusCode() === 200) {
             return $response;
