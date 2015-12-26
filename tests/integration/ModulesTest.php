@@ -73,7 +73,9 @@ class ModulesTest extends TestCase
      */
     public function testIndexDestroy()
     {
-        $module = factory(\WebCalendar\Module::class, 1)->create();
+        $module = factory(\WebCalendar\Module::class, 1)->create([
+            'name' => 'New module'
+        ]);
 
         $this->visit(route('admin.modules.index'))
             ->see($module->name)
