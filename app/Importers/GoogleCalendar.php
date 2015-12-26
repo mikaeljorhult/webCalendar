@@ -15,7 +15,7 @@ class GoogleCalendar extends Importer
             'timeMax' => $this->module->end_date->format('Y-m-d') . 'T23:59:59.000Z',
             'orderBy' => 'startTime',
             'maxResults' => '500',
-            'key' => getenv('API_KEY')
+            'key' => env('API_KEY')
         ];
 
         return $url . '?' . http_build_query($parameters);
