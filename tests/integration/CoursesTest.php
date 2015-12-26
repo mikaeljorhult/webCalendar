@@ -51,10 +51,10 @@ class CoursesTest extends TestCase
         $course = factory(\WebCalendar\Course::class, 1)->create();
 
         $this->visit(route('admin.courses.index'))
-            ->see($course->name)
+            ->see($course->code)
             ->press(trans('messages.delete'))
             ->seePageIs(route('admin.courses.index'))
-            ->dontSee($course->name);
+            ->dontSee($course->code);
 
         $this->assertResponseOk();
     }
@@ -86,7 +86,7 @@ class CoursesTest extends TestCase
 
         $this->visit(route('admin.courses.edit', [$course]))
             ->seePageIs(route('admin.courses.edit', [$course]))
-            ->see($course->name);
+            ->see($course->code);
 
         $this->assertResponseOk();
     }

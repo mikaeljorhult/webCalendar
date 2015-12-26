@@ -58,8 +58,8 @@ class HomeTest extends TestCase
 
         // See course with active module, don't see course without modules or with inactive module.
         $this->visit('/')
-            ->see($courses->first()->name)
-            ->dontSee($courses->get(1)->name)
-            ->dontSee($courses->last()->name);
+            ->see($courses->first()->code)
+            ->dontSee($courses->get(1)->code)
+            ->dontSee($courses->last()->code);
     }
 }
