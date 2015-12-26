@@ -8,7 +8,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(WebCalendar\User::class)->create([
             'username' => 'test',
-            'password' => getenv('DEFAULT_PASSWORD'),
+            'password' => env('DEFAULT_PASSWORD'),
             'email' => 'test@test.com'
         ]);
 
