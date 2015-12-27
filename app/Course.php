@@ -6,8 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name', 'code'];
 
+    /**
+     * Return related modules according to sort order.
+     *
+     * @return mixed
+     */
     public function modules()
     {
         return $this
@@ -16,6 +26,12 @@ class Course extends Model
             ->orderBy('sort_order', 'ASC');
     }
 
+    /**
+     * Courses are only active if it has related active modules.
+     *
+     * @param $query
+     * @return mixed
+     */
     public function scopeActive($query)
     {
         // Get all active modules.

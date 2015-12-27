@@ -12,7 +12,18 @@ use WebCalendar\Importers\WebCal;
 
 class Module extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['course_id', 'name', 'start_date', 'end_date', 'type', 'calendar'];
+
+    /**
+     * The attributes that are cast as date objects.
+     *
+     * @var array
+     */
     protected $dates = ['start_date', 'end_date'];
 
     /**
