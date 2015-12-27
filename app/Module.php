@@ -74,6 +74,16 @@ class Module extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function test() {
+        // Get requested importer.
+        $importer = $this->importer();
+
+        return $importer->test();
+    }
+
+    /**
      * Retrieve and parse calendar feed.
      *
      * @return void

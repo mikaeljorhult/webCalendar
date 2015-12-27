@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Message\Response;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -43,5 +44,30 @@ class ModuleTest extends TestCase
         $this->assertInstanceOf(\WebCalendar\Importers\GoogleCalendar::class, $google->importer());
         $this->assertInstanceOf(\WebCalendar\Importers\ICal::class, $ical->importer());
         $this->assertInstanceOf(\WebCalendar\Importers\WebCal::class, $webcal->importer());
+    }
+
+    /**
+     * Check that test function return true if able to connect to URL.
+     *
+     * @return void
+     */
+    public function testModuleTestMethod()
+    {
+        // Create modules of each type of calendar.
+        $google = factory(\WebCalendar\Module::class, 'active')->make(['type' => 'google']);
+        $ical = factory(\WebCalendar\Module::class, 'active')->make(['type' => 'ical']);
+        $webcal = factory(\WebCalendar\Module::class, 'active')->make(['type' => 'webcal']);
+
+        // Mock empty 200 OK response.
+        $this->setHttpResponses([
+            new Response(200, []),
+            new Response(200, []),
+            new Response(200, [])
+        ]);
+
+        // Will be able to connect and should return true.
+        $this->assertTrue($google->test());
+        $this->assertTrue($ical->test());
+        $this->assertTrue($webcal->test());
     }
 }

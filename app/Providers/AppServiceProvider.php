@@ -21,9 +21,8 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('connectable', function ($attribute, $value, $parameters, $validator) {
             // Create mock module to test URL with.
             $module = new Module($validator->getData());
-            $calendar = $module->importer();
 
-            return $calendar->test();
+            return $module->test();
         });
 
         Form::macro('courseCheckbox', function ($name, $selected = array()) {
