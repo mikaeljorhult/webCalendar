@@ -54,14 +54,13 @@ class CoursesController extends Controller
      */
     public function display($code)
     {
-        $course = Course::where('code', '=', $code)->first();
+        $course = Course::with('modules')->where('code', '=', $code)->first();
         $sort_order = [];
 
         if ($course) {
-            $modules = $course->modules()->get();
+            $modules = $course->modules;
 
-            $module_id = $course->modules()->pluck('module_id');
-            $lessons = Lesson::whereIn('module_id', $module_id)
+            $lessons = Lesson::whereIn('module_id', $modules->pluck('id'))
                 ->with('module')
                 ->orderBy('start_time', 'ASC')
                 ->orderBy('title', 'ASC')
