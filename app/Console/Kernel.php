@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \WebCalendar\Console\Commands\CacheCalendarsCommand::class,
+        \WebCalendar\Console\Commands\FetchCalendarsCommand::class,
         \WebCalendar\Console\Commands\UpdateCalendarsCommand::class,
     ];
 

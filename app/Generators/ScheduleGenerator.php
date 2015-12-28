@@ -6,7 +6,8 @@ use WebCalendar\Lesson;
 
 class ScheduleGenerator
 {
-    public function generate($course) {
+    public function generate($course)
+    {
         $sort_order = [];
         $modules = $course->modules;
 

@@ -63,7 +63,7 @@ class Module extends Model
     /**
      * Only store allowed calendar types.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return string
      */
     public function setTypeAttribute($value)
@@ -76,7 +76,8 @@ class Module extends Model
     /**
      * @return mixed
      */
-    public function test() {
+    public function test()
+    {
         // Get requested importer.
         $importer = $this->importer();
 

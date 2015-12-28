@@ -2,6 +2,7 @@
 
 namespace WebCalendar\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use WebCalendar\Course;
 use WebCalendar\Http\Requests\CourseCreateRequest;
@@ -55,26 +56,9 @@ class CoursesController extends Controller
     public function display($code)
     {
         $course = Course::with('modules')->where('code', '=', $code)->first();
-        $sort_order = [];
 
         if ($course) {
-            $modules = $course->modules;
-
-            $lessons = Lesson::whereIn('module_id', $modules->pluck('id'))
-                ->with('module')
-                ->orderBy('start_time', 'ASC')
-                ->orderBy('title', 'ASC')
-                ->get();
-
-            foreach ($modules as $module) {
-                $sort_order[$module->id] = $module->pivot->sort_order;
-            }
-
-            return view('courses.schedule')
-                ->with('course', $course)
-                ->with('modules', $modules)
-                ->with('lessons', $lessons)
-                ->with('sort_order', $sort_order);
+            return Cache::get('schedule.' . $course->code);
         }
 
         return redirect()->route('home');
