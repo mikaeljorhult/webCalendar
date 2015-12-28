@@ -2,9 +2,6 @@
 
 namespace WebCalendar\Http\Controllers;
 
-use WebCalendar\Lesson;
-use WebCalendar\Module;
-
 class LessonsController extends Controller
 {
     /**

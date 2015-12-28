@@ -6,10 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-use WebCalendar\Importers\GoogleCalendar;
-use WebCalendar\Importers\ICal;
-use WebCalendar\Importers\WebCal;
-
 class Module extends Model
 {
     /**
