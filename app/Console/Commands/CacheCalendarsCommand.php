@@ -49,7 +49,7 @@ class CacheCalendarsCommand extends Command
         // Go through and cache calendar for each course.
         if (count($courses) > 0) {
             foreach ($courses as $course) {
-                $this->info('Caching course: ' . $course->name . '...');
+                $this->line('Caching course: ' . $course->name . '...');
 
                 // Generate schedule for course and cache output.
                 Cache::rememberForever('schedule.' . $course->code, function () use ($generator, $course) {
