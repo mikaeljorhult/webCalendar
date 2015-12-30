@@ -41,7 +41,7 @@ class ImportersTest extends TestCase
             ->once();
 
         // Mock 404 Not Found response.
-        $json = view('tests.google')->render();
+        $json = view('tests.google-404')->render();
 
         $this->setHttpResponses([
             new Response(404, [], \GuzzleHttp\Stream\Stream::factory($json))

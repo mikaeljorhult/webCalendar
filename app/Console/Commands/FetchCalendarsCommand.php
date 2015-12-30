@@ -46,7 +46,7 @@ class FetchCalendarsCommand extends Command
         // Go through and retrieve all found modules.
         if (count($modules) > 0) {
             foreach ($modules as $module) {
-                $this->info('Updating module: ' . $module->name . '...');
+                $this->line('Updating module: ' . $module->name . '...');
                 $module->retrieve();
             }
 
