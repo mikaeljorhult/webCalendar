@@ -69,7 +69,7 @@ class CommandsTest extends TestCase
         Cache::shouldReceive('rememberForever')
             ->once()
             ->with('schedule.' . $courses->first()->code, \Mockery::on(function ($value) {
-               return $value instanceof Closure;
+                return $value instanceof Closure;
             }));
 
         Cache::shouldReceive('rememberForever')
@@ -164,7 +164,7 @@ class CommandsTest extends TestCase
     public function testFetchCalendarsCommandWithNoActiveModules()
     {
         // Mock importer class.
-        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function($mock) {
+        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function ($mock) {
             // Importer should be called once for each active module. Never.
             $mock->shouldReceive('get')
                 ->never()
@@ -240,7 +240,7 @@ class CommandsTest extends TestCase
         factory(\WebCalendar\Module::class, 'inactive', 3)->create();
 
         // Mock importer class.
-        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function($mock) {
+        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function ($mock) {
             // Importer should be called once for each supplied existing module. Never.
             $mock->shouldReceive('get')
                 ->never()

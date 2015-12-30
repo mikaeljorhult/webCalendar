@@ -55,10 +55,11 @@ class CoursesController extends Controller
      */
     public function display($code)
     {
-        $course = Course::with('modules')->where('code', '=', $code)->first();
+        $course = Course::where('code', '=', $code)->first();
 
         if ($course) {
-            return Cache::get('schedule.' . $course->code);
+            return view('courses.schedule')
+                ->with('content', Cache::get('schedule.' . $course->code));
         }
 
         return redirect()->route('home');

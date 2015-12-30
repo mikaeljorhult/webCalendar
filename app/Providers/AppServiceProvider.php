@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             return ($return ? '<ul>' . $return . '</ul>' : '');
         });
 
-        view()->composer('courses.schedule', function ($view) {
+        view()->composer('courses.schedule-content', function ($view) {
             $weeks = $view->getData()['lessons']->groupBy(function ($item) {
                 return $item->start_time->format('W');
             });

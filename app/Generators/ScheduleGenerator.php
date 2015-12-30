@@ -21,7 +21,7 @@ class ScheduleGenerator
             $sort_order[$module->id] = $module->pivot->sort_order;
         }
 
-        return view('courses.schedule')
+        return view('courses.schedule-content')
             ->with('course', $course)
             ->with('modules', $modules)
             ->with('lessons', $lessons)
