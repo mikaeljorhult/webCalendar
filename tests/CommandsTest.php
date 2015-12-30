@@ -171,7 +171,7 @@ class CommandsTest extends TestCase
                 ->andReturn(false);
         });
 
-        // Replace Guzzle with mock in service container.
+        // Replace importer with mock in service container.
         app()->instance('\WebCalendar\Importers\GoogleCalendar', $importer);
 
         // Create three inactive modules in database.
@@ -216,7 +216,7 @@ class CommandsTest extends TestCase
                 ->andReturn(false);
         });
 
-        // Replace Guzzle with mock in service container.
+        // Replace importer with mock in service container.
         app()->instance('\WebCalendar\Importers\GoogleCalendar', $importer);
 
         // Run command.
@@ -226,5 +226,67 @@ class CommandsTest extends TestCase
         $this->assertCount(2, \WebCalendar\Lesson::all());
         $this->seeInDatabase('lessons', $lessons[0]);
         $this->seeInDatabase('lessons', $lessons[1]);
+    }
+
+    /**
+     * No module should be cached if non-existing module id is passed to command.
+     *
+     * @return void
+     */
+    public function testFetchCalendarsCommandWithNonExistingModule()
+    {
+        // Create two active and three inactive modules in database.
+        factory(\WebCalendar\Module::class, 'active', 2)->create();
+        factory(\WebCalendar\Module::class, 'inactive', 3)->create();
+
+        // Mock importer class.
+        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function($mock) {
+            // Importer should be called once for each supplied existing module. Never.
+            $mock->shouldReceive('get')
+                ->never()
+                ->andReturn(false);
+        });
+
+        // Replace importer with mock in service container.
+        app()->instance('\WebCalendar\Importers\GoogleCalendar', $importer);
+
+        // Run command.
+        $this->artisan('calendars:fetch', [
+            'id' => [100]
+        ]);
+
+        // Finish test.
+        $this->assertTrue(true);
+    }
+
+    /**
+     * If supplied, only supplied module should be cached.
+     *
+     * @return void
+     */
+    public function testFetchCalendarsCommandWithExistingModule()
+    {
+        // Create two active and three inactive modules in database.
+        $modules = factory(\WebCalendar\Module::class, 'active', 2)->create();
+        factory(\WebCalendar\Module::class, 'inactive', 3)->create();
+
+        // Mock importer class.
+        $importer = \Mockery::mock('\WebCalendar\Importers\GoogleCalendar', function ($mock) {
+            // Importer should be called once for each supplied module.
+            $mock->shouldReceive('get')
+                ->once()
+                ->andReturn(false);
+        });
+
+        // Replace importer with mock in service container.
+        app()->instance('\WebCalendar\Importers\GoogleCalendar', $importer);
+
+        // Run command.
+        $this->artisan('calendars:fetch', [
+            'id' => [$modules->first()->id]
+        ]);
+
+        // Finish test.
+        $this->assertTrue(true);
     }
 }

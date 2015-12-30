@@ -12,14 +12,14 @@ class FetchCalendarsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'calendars:fetch';
+    protected $signature = 'calendars:fetch {id?*}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Fetch and save calendars for active modules.';
+    protected $description = 'Fetch and save calendars for modules.';
 
     /**
      * Create a new command instance.
@@ -38,10 +38,10 @@ class FetchCalendarsCommand extends Command
      */
     public function handle()
     {
-        $this->info('Fetching all active modules.');
+        $this->info('Fetching modules.');
 
         // Get all active modules.
-        $modules = Module::active()->get();
+        $modules = $this->modules();
 
         // Go through and retrieve all found modules.
         if (count($modules) > 0) {
@@ -53,6 +53,26 @@ class FetchCalendarsCommand extends Command
             $this->info('Updated ' . count($modules) . ' modules.');
         } else {
             $this->info('No modules to update.');
+        }
+    }
+
+    /**
+     * Determine which modules should be cached based on command arguments.
+     * Defaults to all active.
+     *
+     * @return mixed
+     */
+    private function modules()
+    {
+        // Get supplied argument.
+        $id = $this->argument('id');
+
+        // Fetch courses by code if present.
+        if ($id !== []) {
+            return Module::whereIn('id', $id)->get();
+        } else {
+            // Default to all active courses.
+            return Module::active()->get();
         }
     }
 }

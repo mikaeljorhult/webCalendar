@@ -67,7 +67,9 @@ class ImportersTest extends TestCase
         $module = factory(\WebCalendar\Module::class, 'active')->make();
 
         // Mock empty 200 OK response.
-        $this->setHttpResponses();
+        $this->setHttpResponses([
+            new Response(200, [], \GuzzleHttp\Stream\Stream::factory('{}'))
+        ]);
 
         // Google Calendar importer for mocked module.
         $importer = app()->make('\WebCalendar\Importers\GoogleCalendar', [$module]);
