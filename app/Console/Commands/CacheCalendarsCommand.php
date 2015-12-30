@@ -14,7 +14,7 @@ class CacheCalendarsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'calendars:cache';
+    protected $signature = 'calendars:cache {code?*}';
 
     /**
      * The console command description.
@@ -41,10 +41,10 @@ class CacheCalendarsCommand extends Command
      */
     public function handle(ScheduleGenerator $generator)
     {
-        $this->info('Caching all active courses.');
+        $this->info('Caching courses.');
 
         // Get all active courses
-        $courses = Course::active()->get();
+        $courses = $this->courses();
 
         // Go through and cache calendar for each course.
         if (count($courses) > 0) {
@@ -60,6 +60,26 @@ class CacheCalendarsCommand extends Command
             $this->info('Cached ' . count($courses) . ' courses.');
         } else {
             $this->info('No courses to cache.');
+        }
+    }
+
+    /**
+     * Determine which courses should be cached based on command arguments.
+     * Defaults to all active.
+     *
+     * @return mixed
+     */
+    private function courses()
+    {
+        // Get supplied argument.
+        $code = $this->argument('code');
+
+        // Fetch courses by code if present.
+        if ($code !== []) {
+            return Course::whereIn('code', $code)->get();
+        } else {
+            // Default to all active courses.
+            return Course::active()->get();
         }
     }
 }

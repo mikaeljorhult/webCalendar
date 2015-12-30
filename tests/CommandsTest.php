@@ -86,6 +86,63 @@ class CommandsTest extends TestCase
     }
 
     /**
+     * No course should be cached if non-existing course code is passed to command.
+     *
+     * @return void
+     */
+    public function testCacheCalendarsCommandWithNonExistingCourse()
+    {
+        // Store three courses in database.
+        $courses = factory(\WebCalendar\Course::class, 3)->create();
+
+        // Add active module to first and last course.
+        $courses->first()->modules()->attach(factory(\WebCalendar\Module::class, 'active')->create());
+        $courses->last()->modules()->attach(factory(\WebCalendar\Module::class, 'active')->create());
+
+        // Setup expectations for cache facade.
+        Cache::shouldReceive('rememberForever')
+            ->never();
+
+        // Run command.
+        $this->artisan('calendars:cache', [
+            'code' => ['test-course']
+        ]);
+
+        // Finish test.
+        $this->assertTrue(true);
+    }
+
+    /**
+     * If supplied, only supplied courses should be cached.
+     *
+     * @return void
+     */
+    public function testCacheCalendarsCommandWithExistingCourse()
+    {
+        // Store three courses in database.
+        $courses = factory(\WebCalendar\Course::class, 3)->create();
+
+        // Add active module to first and last course.
+        $courses->first()->modules()->attach(factory(\WebCalendar\Module::class, 'active')->create());
+        $courses->last()->modules()->attach(factory(\WebCalendar\Module::class, 'active')->create());
+
+        // Setup expectations for cache facade.
+        Cache::shouldReceive('rememberForever')
+            ->once()
+            ->with('schedule.' . $courses->first()->code, \Mockery::on(function ($value) {
+                return $value instanceof Closure;
+            }));
+
+        // Run command.
+        $this->artisan('calendars:cache', [
+            'code' => [$courses->first()->code]
+        ]);
+
+        // Finish test.
+        $this->assertTrue(true);
+    }
+
+    /**
      * Command should work with no modules in database.
      *
      * @return void
