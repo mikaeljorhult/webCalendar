@@ -1,7 +1,6 @@
 <?php
 
-use GuzzleHttp\Message\Response;
-
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -44,7 +43,7 @@ class ImportersTest extends TestCase
         $json = view('tests.google-404')->render();
 
         $this->setHttpResponses([
-            new Response(404, [], \GuzzleHttp\Stream\Stream::factory($json))
+            new Response(404, [], $json)
         ]);
 
         // Google Calendar importer for mocked module.
@@ -68,7 +67,7 @@ class ImportersTest extends TestCase
 
         // Mock empty 200 OK response.
         $this->setHttpResponses([
-            new Response(200, [], \GuzzleHttp\Stream\Stream::factory('{}'))
+            new Response(200, [], '{}')
         ]);
 
         // Google Calendar importer for mocked module.
@@ -91,7 +90,7 @@ class ImportersTest extends TestCase
         $json = view('tests.google')->render();
 
         $this->setHttpResponses([
-            new Response(200, [], \GuzzleHttp\Stream\Stream::factory($json))
+            new Response(200, [], $json)
         ]);
 
         // Google Calendar importer for mocked module.
@@ -146,7 +145,7 @@ class ImportersTest extends TestCase
 
         // Mock 404 Not Found response.
         $this->setHttpResponses([
-            new Response(404, [], \GuzzleHttp\Stream\Stream::factory(''))
+            new Response(404, [], '')
         ]);
 
         // iCal importer for mocked module.
@@ -198,7 +197,7 @@ class ImportersTest extends TestCase
         $ical = view('tests.ical')->render();
 
         $this->setHttpResponses([
-            new Response(200, [], \GuzzleHttp\Stream\Stream::factory($ical))
+            new Response(200, [], $ical)
         ]);
 
         // iCal importer for mocked module.
@@ -253,7 +252,7 @@ class ImportersTest extends TestCase
 
         // Mock 404 Not Found response.
         $this->setHttpResponses([
-            new Response(404, [], \GuzzleHttp\Stream\Stream::factory(''))
+            new Response(404, [], '')
         ]);
 
         // WebCal importer for mocked module.
@@ -305,7 +304,7 @@ class ImportersTest extends TestCase
         $ical = view('tests.ical')->render();
 
         $this->setHttpResponses([
-            new Response(200, [], \GuzzleHttp\Stream\Stream::factory($ical))
+            new Response(200, [], $ical)
         ]);
 
         // WebCal importer for mocked module.

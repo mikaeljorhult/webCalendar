@@ -1,8 +1,9 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Subscriber\Mock;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -40,10 +41,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         }
 
         // Setup client and attach responses.
-        $client = new Client();
-        $mock = new Mock($responses);
-
-        $client->getEmitter()->attach($mock);
+        $mock = new MockHandler($responses);
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
 
         // Replace Guzzle with mock in service container.
         app()->instance('\GuzzleHttp\Client', $client);

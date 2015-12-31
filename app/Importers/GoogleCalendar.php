@@ -28,7 +28,7 @@ class GoogleCalendar extends Importer
 
         // Check that calendar was returned correctly.
         if ($response) {
-            return $this->parse($response->json());
+            return $this->parse(json_decode($response->getBody(), true));
         } else {
             // Log that retrieval of calendar failed.
             \Log::error('Couldn\'t retrieve Google calendar for ' . $this->module->name . '.');
