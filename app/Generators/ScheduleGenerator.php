@@ -8,24 +8,19 @@ class ScheduleGenerator
 {
     public function generate($course)
     {
-        $sort_order = [];
-        $modules = $course->modules;
+        $sortOrder = $course->modules->pluck('pivot.sort_order', 'id');
 
-        $lessons = Lesson::whereIn('module_id', $modules->pluck('id'))
+        $lessons = Lesson::whereIn('module_id', $course->modules->pluck('id'))
             ->with('module')
             ->orderBy('start_time', 'ASC')
             ->orderBy('title', 'ASC')
             ->get();
 
-        foreach ($modules as $module) {
-            $sort_order[$module->id] = $module->pivot->sort_order;
-        }
-
         return view('courses.schedule-content')
             ->with('course', $course)
-            ->with('modules', $modules)
+            ->with('modules', $course->modules)
             ->with('lessons', $lessons)
-            ->with('sort_order', $sort_order)
+            ->with('sort_order', $sortOrder)
             ->render();
     }
 }
