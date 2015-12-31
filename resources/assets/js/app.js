@@ -43,19 +43,12 @@
   }
 
   function calculate_modules() {
-    var selectors = [],
-        ids       = [];
-
+    var selectors = [];
+    
     // Get checked modules and save as array of classes.
     $modules.find('input:checked').each(function (index, element) {
       selectors.push('.' + $(element).attr('class'));
-      ids.push($(element).attr('id'));
     });
-
-    // Save ids to localStorage.
-    if (Modernizr.localstorage) {
-      localStorage.setItem('modules', JSON.stringify(ids));
-    }
 
     // Assume all events hidden and then show requested ones.
     $events.hide()
