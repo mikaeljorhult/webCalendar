@@ -44,7 +44,7 @@
 
   function calculate_modules() {
     var selectors = [];
-    
+
     // Get checked modules and save as array of classes.
     $modules.find('input:checked').each(function (index, element) {
       selectors.push('.' + $(element).attr('class'));
