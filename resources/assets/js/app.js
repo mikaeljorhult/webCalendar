@@ -35,21 +35,7 @@
   function init_filters() {
     // Check for localStorage support.
     if (Modernizr.localstorage) {
-      var modules   = JSON.parse(localStorage.getItem('modules')),
-          hide_past = localStorage.getItem('hide-past') === 'true';
-
-      // Go through modules and check localStorage.
-      if (modules) {
-        $modules.each(function (index, element) {
-          var $element = $(element);
-
-          if (modules.indexOf($element.attr('id')) > -1) {
-            $element.prop('checked', true);
-          } else {
-            $element.prop('checked', false);
-          }
-        });
-      }
+      var hide_past = localStorage.getItem('hide-past') === 'true';
 
       // Restore state of hide past checkbox.
       $('#hide-past').prop('checked', hide_past);
@@ -89,22 +75,14 @@
     }
 
     // Go through all days and check for visible events.
-    $days.each(function (index, element) {
-      var $element = $(element);
-
-      if ($element.find('.event').filter(':visible').length === 0) {
-        $element.hide();
-      }
-    });
+    $days.filter(function(){
+      return $(this).find('.event:visible').length == 0;
+    }).hide();
 
     // Go through all weeks and check for visible days.
-    $weeks.each(function (index, element) {
-      var $element = $(element);
-
-      if ($element.find('.day').filter(':visible').length === 0) {
-        $element.hide();
-      }
-    });
+    $weeks.filter(function(){
+      return $(this).find('.day:visible').length == 0;
+    }).hide();
   }
 
 
