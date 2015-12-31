@@ -1,3 +1,5 @@
 @extends ('_layouts/default')
 
-{!! $content !!}
+@section ('content')
+	{!! $content !!}
+@stop
