@@ -57,19 +57,6 @@ class Module extends Model
     }
 
     /**
-     * Only store allowed calendar types.
-     *
-     * @param  string $value
-     * @return string
-     */
-    public function setTypeAttribute($value)
-    {
-        $allowedTypes = ['google', 'ical', 'webcal'];
-
-        $this->attributes['type'] = in_array($value, $allowedTypes) ? $value : 'google';
-    }
-
-    /**
      * @return mixed
      */
     public function test()
