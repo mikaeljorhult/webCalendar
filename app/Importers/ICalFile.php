@@ -2,16 +2,14 @@
 
 namespace WebCalendar\Importers;
 
-use Sabre\VObject\Reader;
+use Illuminate\Support\Facades\Storage;
 
 class ICalFile extends ICal
 {
     public function request()
     {
-        $contents = file_get_contents(storage_path('app/') . $this->url());
-
-        if ($contents !== false) {
-            return $contents;
+        if (Storage::has($this->url())) {
+            return Storage::get($this->url());
         }
 
         return false;

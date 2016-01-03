@@ -5,6 +5,7 @@ namespace WebCalendar;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class Module extends Model
 {
@@ -130,10 +131,13 @@ class Module extends Model
     public function addFile($file)
     {
         // Generate a unique filename.
-        $uniqueFilename = md5($file->getFilename() . time()) . '.' . $file->getClientOriginalExtension();
+        $uniqueFilename = md5($file->getClientOriginalName() . time()) . '.' . $file->getClientOriginalExtension();
 
         // Move file to storage folder.
-        $file->move(storage_path('app'), $uniqueFilename);
+        Storage::put(
+            $uniqueFilename,
+            file_get_contents($file->getRealPath())
+        );
 
         // Store filename in model.
         $this->calendar = $uniqueFilename;

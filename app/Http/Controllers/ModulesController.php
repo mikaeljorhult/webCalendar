@@ -2,6 +2,7 @@
 
 namespace WebCalendar\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use WebCalendar\Http\Requests\ModuleCreateRequest;
 use WebCalendar\Http\Requests\ModuleUpdateRequest;
 use WebCalendar\Module;
@@ -111,8 +112,8 @@ class ModulesController extends Controller
         $module->delete();
 
         // Delete calendar file if present.
-        if (str_contains($module->type, '-file')) {
-            unlink(storage_path('app/' . $module->calendar));
+        if (str_contains($module->type, '-file') && Storage::has($module->calendar)) {
+            Storage::delete($module->calendar);
         }
 
         return redirect()->route('admin.modules.index');
