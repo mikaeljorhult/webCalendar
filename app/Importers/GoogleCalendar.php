@@ -37,7 +37,7 @@ class GoogleCalendar extends Importer
         return false;
     }
 
-    private function parse($json)
+    protected function parse($json)
     {
         if ($json) {
             $lessons = [];

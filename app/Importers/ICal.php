@@ -22,7 +22,7 @@ class ICal extends Importer
         return false;
     }
 
-    private function parse($body)
+    protected function parse($body)
     {
         if ($body) {
             $calendar = Reader::read($body, Reader::OPTION_FORGIVING)

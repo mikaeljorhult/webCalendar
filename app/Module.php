@@ -107,6 +107,10 @@ class Module extends Model
                 $importer = '\WebCalendar\Importers\ICal';
                 break;
 
+            case 'ical-file':
+                $importer = '\WebCalendar\Importers\ICalFile';
+                break;
+
             case 'webcal':
                 $importer = '\WebCalendar\Importers\WebCal';
                 break;
