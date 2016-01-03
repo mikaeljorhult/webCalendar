@@ -65,7 +65,7 @@ class Module extends Model
         // Get requested importer.
         $importer = $this->importer();
 
-        return $importer->test();
+        return $importer->test($this);
     }
 
     /**
