@@ -39,7 +39,15 @@ class ModulesController extends Controller
      */
     public function store(ModuleCreateRequest $request)
     {
-        $module = Module::create($request->all());
+        $module = new Module($request->all());
+
+        // Save file and store in model if present in request.
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $module->addFile($request->file('file'));
+        }
+
+        // Store module and attach related courses.
+        $module->save();
         $module->courses()->sync((array)$request->input('courses'));
 
         return redirect()->route('admin.modules.index');
@@ -78,7 +86,15 @@ class ModulesController extends Controller
      */
     public function update(Module $module, ModuleUpdateRequest $request)
     {
-        $module->update($request->all());
+        $module->fill($request->all());
+
+        // Save file and store in model if present in request.
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $module->addFile($request->file('file'));
+        }
+
+        // Store module and attach related courses.
+        $module->save();
         $module->courses()->sync((array)$request->input('courses'));
 
         return redirect()->route('admin.modules.index');
@@ -93,6 +109,11 @@ class ModulesController extends Controller
     public function destroy(Module $module)
     {
         $module->delete();
+
+        // Delete calendar file if present.
+        if (str_contains($module->type, '-file')) {
+            unlink(storage_path('app/' . $module->calendar));
+        }
 
         return redirect()->route('admin.modules.index');
     }

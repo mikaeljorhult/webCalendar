@@ -16,11 +16,15 @@
 
 	<li>
 		{!! Form::label('type', trans('messages.calendar')) !!}
-		{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'webcal' => 'WebCal']) !!}
+		{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'ical-file' => 'iCal (fil)', 'webcal' => 'WebCal']) !!}
 
 		<br />
 
 		{!! Form::text('calendar') !!}
+
+		<br />
+
+		{!! Form::file('file') !!}
 	</li>
 
 	<li>

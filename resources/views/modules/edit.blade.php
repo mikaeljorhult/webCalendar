@@ -6,7 +6,7 @@
 
 	@include ('_partials.errors')
 
-	{!! Form::model($module, ['route' => ['admin.modules.update', $module->id], 'method' => 'PUT']) !!}
+	{!! Form::model($module, ['route' => ['admin.modules.update', $module->id], 'method' => 'PUT', 'files' => true]) !!}
 		@include ('modules._form', ['submitButtonText' => trans('messages.update')])
 	{!! Form::close() !!}
 

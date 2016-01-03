@@ -27,8 +27,9 @@ class ModuleUpdateRequest extends Request
             'name' => ['required'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],
-            'type' => ['in:google,ical,webcal'],
-            'calendar' => ['required', 'connectable']
+            'type' => ['in:google,ical,ical-file,webcal'],
+            'calendar' => ['required_if:type,google,ical,webcal', 'connectable'],
+            'file' => ['required_without:calendar', 'mimes:ics']
         ];
     }
 }

@@ -6,7 +6,7 @@
 
 	@include ('_partials.errors')
 
-	{!! Form::model($module = new \WebCalendar\Module, ['route' => 'admin.modules.store']) !!}
+	{!! Form::model($module = new \WebCalendar\Module, ['route' => 'admin.modules.store', 'files' => true]) !!}
 		@include ('modules._form', ['submitButtonText' => trans('messages.create-module')])
 	{!! Form::close() !!}
 
