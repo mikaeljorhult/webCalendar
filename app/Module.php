@@ -117,4 +117,22 @@ class Module extends Model
 
         return app()->make($importer, [$this]);
     }
+
+    /**
+     * Store calendar file and attach to model.
+     *
+     * @param $file
+     */
+    public function addFile($file)
+    {
+        // Generate a unique filename.
+        $uniqueFilename = md5($file->getFilename() . time()) . '.' . $file->getClientOriginalExtension();
+
+        // Move file to storage folder.
+        $file->move(storage_path('app'), $uniqueFilename);
+
+        // Store filename in model.
+        $this->calendar = $uniqueFilename;
+        $this->save();
+    }
 }
