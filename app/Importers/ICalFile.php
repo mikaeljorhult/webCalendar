@@ -17,7 +17,7 @@ class ICalFile extends ICal
 
     public function get()
     {
-        // Try to fetch calendar.
+        // Try to read calendar file.
         $contents = $this->request();
 
         // Check that calendar was returned correctly.

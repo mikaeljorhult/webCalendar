@@ -1,9 +1,6 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ImportersTest extends TestCase
 {
@@ -319,5 +316,122 @@ class ImportersTest extends TestCase
         $this->assertEquals('Event title', $events[0]['title']);
         $this->assertEquals('Event description', $events[0]['description']);
         $this->assertEquals('Event location', $events[0]['location']);
+    }
+
+    /**
+     * Check that test function return true if able to connect to URL.
+     *
+     * @return void
+     */
+    public function testICalFileTestMethod()
+    {
+        $module = factory(\WebCalendar\Module::class, 'active')->make([
+            'type' => 'ical-file',
+            'calendar' => 'test-ical.ics'
+        ]);
+
+        // Create file for testing iCal.
+        Storage::put(
+            'test-ical.ics',
+            view('tests.ical')->render()
+        );
+
+        // iCal importer for mocked module.
+        $importer = app()->make('\WebCalendar\Importers\ICalFile', [$module]);
+
+        // Will be able to connect and should return true.
+        $this->assertTrue($importer->test());
+
+        // Delete temporary test files.
+        Storage::delete('test-ical.ics');
+    }
+
+    /**
+     * Any failed attempts to retrieve calendar should be logged.
+     *
+     * @return void
+     */
+    public function testICalFileFailedRetrieval()
+    {
+        $module = factory(\WebCalendar\Module::class, 'active')->make([
+            'type' => 'ical-file',
+            'calendar' => 'test-ical.ics'
+        ]);
+
+        // Mock Log facade.
+        \Log::shouldReceive('error')
+            ->once();
+
+        // iCal importer for mocked module.
+        $importer = app()->make('\WebCalendar\Importers\ICalFile', [$module]);
+
+        // Parse and return event from source.
+        $events = $importer->get();
+
+        // Method should return false.
+        $this->assertFalse($events);
+    }
+
+    /**
+     * An empty response should work.
+     *
+     * @return void
+     */
+    public function testICalFileEmpty()
+    {
+        $module = factory(\WebCalendar\Module::class, 'active')->make([
+            'type' => 'ical-file',
+            'calendar' => 'test-ical.ics'
+        ]);
+
+        // Create file for testing iCal.
+        Storage::put('test-ical.ics', '');
+
+        // iCal importer for mocked module.
+        $importer = app()->make('\WebCalendar\Importers\ICalFile', [$module]);
+
+        // Should return false for empty responses.
+        $this->assertFalse($importer->get());
+
+        // Delete temporary test files.
+        Storage::delete('test-ical.ics');
+    }
+
+    /**
+     * Importer should parse response content and return events.
+     * Should ignore events not within module start and end dates.
+     *
+     * @return void
+     */
+    public function testICalFileWithEvents()
+    {
+        $module = factory(\WebCalendar\Module::class, 'active')->make([
+            'type' => 'ical',
+            'calendar' => 'test-ical.ics',
+            'start_date' => \Carbon\Carbon::now()->subMonth(),
+            'end_date' => \Carbon\Carbon::now()->addMonth()
+        ]);
+
+        // Create file for testing iCal.
+        Storage::put(
+            'test-ical.ics',
+            view('tests.ical')->render()
+        );
+
+        // iCal importer for mocked module.
+        $importer = app()->make('\WebCalendar\Importers\ICalFile', [$module]);
+
+        // Parse and return event from source.
+        $events = $importer->get();
+
+        // Array should contain 1 event.
+        $this->assertTrue(is_array($events));
+        $this->assertCount(1, $events);
+        $this->assertEquals('Event title', $events[0]['title']);
+        $this->assertEquals('Event description', $events[0]['description']);
+        $this->assertEquals('Event location', $events[0]['location']);
+
+        // Delete temporary test files.
+        Storage::delete([$module->calendar]);
     }
 }

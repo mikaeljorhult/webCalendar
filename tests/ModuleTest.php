@@ -104,7 +104,7 @@ class ModuleTest extends TestCase
 
         // Mock an uploaded file.
         $file = Mockery::mock('\Symfony\Component\HttpFoundation\File\UploadedFile', [
-            'getClientOriginalName' => 'ical-test.ics',
+            'getClientOriginalName' => 'test-ical.ics',
             'getClientOriginalExtension' => 'ics',
             'getRealPath' => storage_path('app/test-ical.ics')
         ]);
