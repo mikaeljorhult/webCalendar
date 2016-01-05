@@ -14,7 +14,7 @@
 		{!! Form::date('end_date', $module->end_date) !!}
 	</li>
 
-	<li>
+	<li class="calendar-type">
 		{!! Form::label('type', trans('messages.calendar')) !!}
 		{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'ical-file' => 'iCal (fil)', 'webcal' => 'WebCal']) !!}
 
