@@ -18,7 +18,7 @@ elixir(function(mix) {
     .browserify('admin.js')
     .scripts('modernizr.js')
     .scripts([
-      'jquery.js'
+      './node_modules/jquery/dist/jquery.min.js'
     ], './public/js/vendor.js')
     .version([
       'js/modernizr.js',
