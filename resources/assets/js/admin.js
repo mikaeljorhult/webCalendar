@@ -1,4 +1,4 @@
-var Sortable = require('./sortable'),
+var Sortable = require('sortablejs'),
   sortable;
 
 // Make sortable lists sortable.
