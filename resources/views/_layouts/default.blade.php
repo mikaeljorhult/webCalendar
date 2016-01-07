@@ -21,24 +21,26 @@
 </head>
 
 <body>
-	<header class="main-header clearfix">
-		<h1 class="gamma"><a href="{{ route('home') }}" class="logo">webCalendar</a></h1>
+	<header class="navbar navbar-full navbar-dark bg-inverse">
+		<div class="container">
+			<a class="navbar-brand" href="{{ route('home') }}">webCalendar</a>
 
-		<ul class="nav">
-			@if (Auth::check())
-				<li>{!! link_to_route('admin.courses.index', trans('messages.courses')) !!}</li>
-				<li>{!! link_to_route('admin.modules.index', trans('messages.modules')) !!}</li>
-				<li>{!! link_to_route('admin.users.index', trans('messages.users')) !!}</li>
-				<li>{!! link_to_route('logout', trans('messages.logout')) !!}</li>
-			@endif
-		</ul>
+			<ul class="nav navbar-nav pull-xs-right">
+				@if (Auth::check())
+					<li class="nav-item">{!! link_to_route('admin.courses.index', trans('messages.courses'), [], ['class' => 'nav-link']) !!}</li>
+					<li class="nav-item">{!! link_to_route('admin.modules.index', trans('messages.modules'), [], ['class' => 'nav-link']) !!}</li>
+					<li class="nav-item">{!! link_to_route('admin.users.index', trans('messages.users'), [], ['class' => 'nav-link']) !!}</li>
+					<li class="nav-item">{!! link_to_route('logout', trans('messages.logout'), [], ['class' => 'nav-link']) !!}</li>
+				@endif
+			</ul>
+		</div>
 	</header>
 
-	<section class="wrapper main-content">
+	<section class="container main-content">
 		@yield ('content')
 	</section>
 
-	<footer class="wrapper main-footer clearfix">
+	<footer class="container">
 		&nbsp;
 	</footer>
 

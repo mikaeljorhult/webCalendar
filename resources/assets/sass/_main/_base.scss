@@ -1,21 +1,7 @@
-* {
-	box-sizing: border-box;
-}
-
-html {
-	position: relative;
-	padding: 1.3em 0.5em;
-	background-color: $html-background-color;
-	line-height: 1.5625em
-}
-
-body {
-	max-width: $grid-width;
-	margin: 0 auto;
-	padding: 0.6em 1em 0;
-	background-color: $body-background-color;
-	color: $text-color;
-	font-family: "Raleway", sans-serif;
+.main-content {
+	padding-top: 2rem;
+	padding-bottom: 3rem;
+	background-color: #fefefe;
 }
 
 img {
@@ -88,13 +74,6 @@ input[type="submit"] {
 	}
 }
 
-table {
-	width: 100%;
-	margin-bottom: 0.5em;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
 tr {
 	&:hover {
 		background-color: lighten($brand-color-1, 60);
@@ -118,11 +97,6 @@ td {
 		width: 26px;
 		text-align: right;
 	}
-}
-
-ul, ol {
-	margin: 0.15em 0 0.5em;
-	padding-left: 2em;
 }
 
 .icon-button {

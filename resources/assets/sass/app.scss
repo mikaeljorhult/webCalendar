@@ -1,12 +1,5 @@
 @import 'config';
-@import '_mixins/mixins';
-@import '_defaults/normalize';
-@import '_defaults/typography';
+@import 'node_modules/bootstrap/scss/bootstrap';
 @import '_main/base';
-@import '_main/grid';
-@import '_main/header';
-@import '_main/footer';
 @import '_main/events';
 @import '_main/sortable';
-@import '_defaults/helpers';
-@import '_mediaqueries/mediaqueries';
