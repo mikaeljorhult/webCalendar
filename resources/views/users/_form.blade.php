@@ -1,20 +1,18 @@
-<ul>
-	<li>
-		{!! Form::label('username', trans('messages.username')) !!}
-		{!! Form::text('username', null, ['placeholder' => trans('messages.username')]) !!}
-	</li>
+<fieldset class="form-group">
+	{!! Form::label('username', trans('messages.username')) !!}
+	{!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('messages.username')]) !!}
+</fieldset>
 
-	<li>
-		{!! Form::label('password', trans('messages.password')) !!}
-		{!! Form::password('password', ['placeholder' => trans('messages.password')]) !!}
-	</li>
+<fieldset class="form-group">
+	{!! Form::label('password', trans('messages.password')) !!}
+	{!! Form::password('password', ['class' => 'form-control', 'placeholder' => trans('messages.password')]) !!}
+</fieldset>
 
-	<li>
-		{!! Form::label('email', trans('messages.email')) !!}
-		{!! Form::text('email', null, ['placeholder' => trans('messages.email')]) !!}
-	</li>
+<fieldset class="form-group">
+	{!! Form::label('email', trans('messages.email')) !!}
+	{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => trans('messages.email')]) !!}
+</fieldset>
 
-	<li>
-		{!! Form::submit($submitButtonText) !!}
-	</li>
-</ul>
+<fieldset class="form-group">
+	{!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
+</fieldset>

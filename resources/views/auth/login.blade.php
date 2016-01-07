@@ -11,12 +11,12 @@
 
 		<fieldset class="form-group">
 			{{ Form::label('email', trans('messages.email')) }}
-			{{ Form::email('email', old('email'), [], ['class' => 'form-control']) }}
+			{{ Form::email('email', old('email'), ['class' => 'form-control']) }}
 		</fieldset>
 
 		<fieldset class="form-group">
 			{{ Form::label('password', trans('messages.password')) }}</label>
-			{{ Form::password('password', [], ['class' => 'form-control']) }}
+			{{ Form::password('password', ['class' => 'form-control']) }}
 		</fieldset>
 
 		<div class="checkbox">
@@ -26,7 +26,7 @@
 			</label>
 		</div>
 
-		{{ Form::submit(trans('messages.login'), [], ['class' => 'btn btn-primary']) }}
+		{{ Form::submit(trans('messages.login'), ['class' => 'btn btn-primary']) }}
 	</form>
 
 @stop

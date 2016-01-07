@@ -4607,72 +4607,19 @@ img {
   max-width: 100%;
   height: auto; }
 
-form ul {
-  padding-left: 0;
-  list-style: none; }
-
-form li {
-  margin-bottom: 0.5em; }
-
-textarea {
-  overflow: auto;
-  vertical-align: top; }
-
-label {
-  display: block; }
-  input[type="checkbox"] + label {
-    display: inline-block; }
-
-input[type="text"],
-input[type="password"],
-input[type="search"],
-input[type="email"],
-input[type="date"],
-textarea,
-select {
-  padding: 0.5em;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  font-size: 0.9em;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.25); }
-  .main-content input[type="text"], .main-content
-  input[type="password"], .main-content
-  input[type="search"], .main-content
-  input[type="email"], .main-content
-  input[type="date"], .main-content
-  textarea, .main-content
-  select {
-    min-width: 20em; }
-
-.button,
-button,
-input[type="submit"] {
-  padding: 0.5em 1.5em;
-  background-color: #a93413;
-  color: #fff;
-  border: none;
-  line-height: 1; }
-  .button:hover,
-  button:hover,
-  input[type="submit"]:hover {
-    font-style: bold; }
-  .button.no-button,
-  button.no-button,
-  input[type="submit"].no-button {
-    padding: 0;
-    background-color: transparent;
-    color: #a93413;
-    line-height: inherit; }
+.button.no-button,
+button.no-button,
+input[type="submit"].no-button {
+  padding: 0;
+  background-color: transparent;
+  color: #a93413;
+  line-height: inherit; }
 
 tr:hover {
   background-color: #fdf3f1; }
 
 thead tr:hover {
   background-color: transparent; }
-
-th {
-  font-weight: normal;
-  text-align: left; }
 
 th.icon-column,
 td.icon-column {
@@ -4688,6 +4635,7 @@ td.icon-column {
   background: transparent none no-repeat center center;
   background-size: 18px;
   color: transparent;
+  border: none;
   font: 0/0 a; }
 
 .icon-delete {
