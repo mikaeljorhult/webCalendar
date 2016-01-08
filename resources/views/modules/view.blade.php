@@ -2,6 +2,8 @@
 
 @section ('content')
 
-	{{ $module->name }}
+	<div class="page-header">
+		<h1>{{ $module->name }}</h1>
+	</div>
 
 @stop

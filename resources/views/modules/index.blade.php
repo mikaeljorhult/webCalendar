@@ -2,7 +2,10 @@
 
 @section ('content')
 
-	<h2>{{ trans('messages.modules') }}</h2>
+	<div class="page-header">
+		<h1>{{ trans('messages.modules') }}</h1>
+	</div>
+
 	<table cellpadding="0" cellspacing="0" class="table">
 		<thead>
 		<tr>

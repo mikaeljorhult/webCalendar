@@ -2,7 +2,9 @@
 
 @section ('content')
 
-	<h2>{{ trans('messages.edit') }} {{ $module->title }}</h2>
+	<div class="page-header">
+		<h1>{{ trans('messages.edit') }} {{ $module->title }}</h1>
+	</div>
 
 	@include ('_partials.errors')
 

@@ -1,4 +1,6 @@
-<h1>{{ $course->name }}</h1>
+<div class="page-header">
+	<h1>{{ $course->name }}</h1>
+</div>
 
 @include ('_partials.schedule.filters')
 

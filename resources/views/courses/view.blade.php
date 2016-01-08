@@ -2,6 +2,8 @@
 
 @section ('content')
 
-	<h2>{{ $course->name }}</h2>
+	<div class="page-header">
+		<h1>{{ $course->name }}</h1>
+	</div>
 
 @stop

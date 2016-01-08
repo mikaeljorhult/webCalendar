@@ -2,16 +2,20 @@
 
 @section ('content')
 
-	<h2>Kurser</h2>
+	<div class="page-header">
+		<h1>{{ trans('messages.courses') }}</h1>
+	</div>
+
 	<table cellpadding="0" cellspacing="0" class="table">
 		<thead>
-		<tr>
-			<th>Namn</th>
-			<th>Kurskod</th>
-			<th class="icon-column">&nbsp;</th>
-			<th class="icon-column">&nbsp;</th>
-		</tr>
+			<tr>
+				<th>{{ trans('messages.name') }}</th>
+				<th>{{ trans('messages.course-code') }}</th>
+				<th class="icon-column">&nbsp;</th>
+				<th class="icon-column">&nbsp;</th>
+			</tr>
 		</thead>
+
 		<tbody>
 		@if ($courses)
 			@foreach ($courses as $course)
