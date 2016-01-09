@@ -49,31 +49,31 @@ function calculate_modules() {
   });
 
   // Assume all events hidden and then show requested ones.
-  $events.hide()
-    .filter(selectors.join(', ')).show();
+  $events.prop('hidden', 'hidden')
+    .filter(selectors.join(', ')).prop('hidden', false);
 }
 
 function calculate_hidden() {
   // Assume everything visible.
-  $days.show();
-  $weeks.show();
+  $days.prop('hidden', false);
+  $weeks.prop('hidden', false);
 
   // Hide past days if option is checked.
   if ($('#hide-past').prop('checked') === true) {
-    $days.filter('.past').hide();
+    $days.filter('.past').prop('hidden', 'hidden');
   } else {
-    $days.show();
+    $days.prop('hidden', false);
   }
 
   // Go through all days and check for visible events.
   $days.filter(function () {
     return $(this).find('.event:visible').length == 0;
-  }).hide();
+  }).prop('hidden', 'hidden');
 
   // Go through all weeks and check for visible days.
   $weeks.filter(function () {
     return $(this).find('.day:visible').length == 0;
-  }).hide();
+  }).prop('hidden', 'hidden');
 }
 
 

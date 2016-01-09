@@ -60,3 +60,15 @@ td {
 .icon-edit {
 	background-image: url('../img/edit.png');
 }
+
+.calendar-type-input {
+	vertical-align: top;
+}
+
+.file-custom {
+	&,
+	&::before {
+		height: 2.4rem;
+		padding-top: .4rem;
+	}
+}

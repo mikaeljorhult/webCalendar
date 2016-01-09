@@ -13,17 +13,21 @@
 	{!! Form::date('end_date', $module->end_date, ['class' => 'form-control']) !!}
 </fieldset>
 
-<fieldset class="form-group calendar-type">
+<fieldset class="form-group">
 	{!! Form::label('type', trans('messages.calendar')) !!}
-	{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'ical-file' => 'iCal (fil)', 'webcal' => 'WebCal'], [], ['class' => 'form-control']) !!}
 
-	<br />
+	<div class="form-inline calendar-type">
+		{!! Form::select('type', ['google' => 'Google Calendar', 'ical' => 'iCal', 'ical-file' => 'iCal (fil)', 'webcal' => 'WebCal'], [], ['class' => 'form-control c-select']) !!}
 
-	{!! Form::text('calendar', null, ['class' => 'form-control']) !!}
+		<label class="calendar-type-input calendar-type-text">
+			{!! Form::text('calendar', null, ['class' => 'form-control']) !!}
+		</label>
 
-	<br />
-
-	{!! Form::file('file', ['class' => 'form-control-file']) !!}
+		<label class="file calendar-type-input calendar-type-file">
+			{!! Form::file('file') !!}
+			<span class="file-custom"></span>
+		</label>
+	</div>
 </fieldset>
 
 <fieldset class="form-group">
