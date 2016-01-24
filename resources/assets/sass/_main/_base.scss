@@ -20,18 +20,6 @@ input[type="submit"] {
 	}
 }
 
-tr {
-	&:hover {
-		background-color: lighten($brand-color-1, 60);
-	}
-
-	thead & {
-		&:hover {
-			background-color: transparent;
-		}
-	}
-}
-
 th,
 td {
 	&.icon-column {
@@ -45,7 +33,6 @@ td {
 	height: 18px;
 	display: inline-block;
 	vertical-align: text-bottom;
-	float: right;
 	background: transparent none no-repeat center center;
 	background-size: 18px;
 	color: transparent;

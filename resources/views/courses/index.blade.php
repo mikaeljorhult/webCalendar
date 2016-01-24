@@ -6,7 +6,7 @@
 		<h1>{{ trans('messages.courses') }}</h1>
 	</div>
 
-	<table cellpadding="0" cellspacing="0" class="table">
+	<table cellpadding="0" cellspacing="0" class="table table-hover">
 		<thead>
 			<tr>
 				<th>{{ trans('messages.name') }}</th>
