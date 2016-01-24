@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
+    "clipboard-js": "^0.2.0",
     "jquery": "^2.1.4",
     "laravel-elixir": "^4.0.0",
     "sortablejs": "^1.4.2"

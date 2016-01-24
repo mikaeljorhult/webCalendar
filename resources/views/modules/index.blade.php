@@ -23,7 +23,7 @@
 					<td>{!! link_to_route('admin.modules.edit', $module->name, $module->id) !!}</td>
 					<td>{{ $module->start_date->format('Y-m-d') }}</td>
 					<td>{{ $module->end_date->format('Y-m-d') }}</td>
-					<td>{{ $module->calendar }}</td>
+					<td>{!! link_to('#', '', ['class' => 'calendar-link icon-button icon-calendar', 'title' => $module->calendar]) !!}</td>
 					<td>{!! link_to_route('admin.modules.edit', trans('messages.edit'), $module->id, ['class' => 'icon-button icon-edit'])  !!}</td>
 					<td>
 						{!! Form::open(['route' => ['admin.modules.destroy', $module->id], 'method' => 'DELETE']) !!}

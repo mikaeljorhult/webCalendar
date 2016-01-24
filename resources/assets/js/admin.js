@@ -1,4 +1,5 @@
 var Sortable = require('sortablejs'),
+  Clipboard = require('clipboard-js'),
   sortable;
 
 // Make sortable lists sortable.
@@ -24,3 +25,11 @@ $('.calendar-type').on('change', 'select', function() {
     $inputs.filter(':not(.file)').prop('hidden', false);
   }
 }).find('select').trigger('change');
+
+// Allow copying calendar URLs.
+$('.calendar-link').on('click', function(e) {
+  console.log($(this).attr('title'));
+  Clipboard.copy($(this).attr('title'));
+
+  e.preventDefault();
+});
