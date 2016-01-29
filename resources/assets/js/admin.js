@@ -28,7 +28,6 @@ $('.calendar-type').on('change', 'select', function() {
 
 // Allow copying calendar URLs.
 $('.calendar-link').on('click', function(e) {
-  console.log($(this).attr('title'));
   Clipboard.copy($(this).attr('title'));
 
   e.preventDefault();
