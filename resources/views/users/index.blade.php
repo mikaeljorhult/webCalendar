@@ -43,4 +43,6 @@
 		{!! link_to_route('admin.users.create', trans('messages.create-new-user'), [], ['class' => 'button']) !!}
 	</p>
 
+	@include ('_partials.modal.confirm-delete')
+
 @stop

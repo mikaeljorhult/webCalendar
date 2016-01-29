@@ -43,4 +43,6 @@
 		{!! link_to_route('admin.modules.create', trans('messages.create-new-module'), [], ['class' => 'button']) !!}
 	</p>
 
+	@include ('_partials.modal.confirm-delete')
+
 @stop

@@ -42,4 +42,6 @@
 		{!! link_to_route('admin.courses.create', trans('messages.create-new-course'), [], ['class' => 'button']) !!}
 	</p>
 
+	@include ('_partials.modal.confirm-delete')
+
 @stop

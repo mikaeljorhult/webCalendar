@@ -32,3 +32,16 @@ $('.calendar-link').on('click', function(e) {
 
   e.preventDefault();
 });
+
+// Make user confirm deletion.
+$('.icon-delete').on('click', function(e) {
+  var $this = $(this);
+
+  // Create Bootstrap Modal and listen form button click.
+  $('#confirmDeleteModal')
+    .on('click', '.modal-footer .confirm', function (e) {
+      $this.parents('form').submit();
+    }).modal();
+
+  e.preventDefault();
+});

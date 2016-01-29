@@ -32,5 +32,7 @@ return [
     'start-date' => 'Startdatum',
     'end-date' => 'Slutdatum',
     'calendar-id' => 'Kalender-ID',
-    'calendar' => 'Kalender'
+    'calendar' => 'Kalender',
+    'close' => 'Stäng',
+    'delete-object' => 'Vill du verkligen radera objektet?'
 ];
