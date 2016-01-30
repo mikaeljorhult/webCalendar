@@ -3,7 +3,10 @@
 @section ('content')
 
 	<div class="page-header">
-		<h1>{{ trans('messages.modules') }}</h1>
+		<h1>
+			{{ trans('messages.modules') }}
+			{!! link_to_route('admin.modules.create', '+', [], ['class' => 'btn btn-secondary-outline btn-sm']) !!}
+		</h1>
 	</div>
 
 	<table cellpadding="0" cellspacing="0" class="table table-hover">
@@ -40,7 +43,7 @@
 	</table>
 
 	<p>
-		{!! link_to_route('admin.modules.create', trans('messages.create-new-module'), [], ['class' => 'button']) !!}
+		{!! link_to_route('admin.modules.create', trans('messages.create-new-module'), [], ['class' => 'btn btn-primary']) !!}
 	</p>
 
 	@include ('_partials.modal.confirm-delete')

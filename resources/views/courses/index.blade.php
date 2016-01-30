@@ -3,7 +3,10 @@
 @section ('content')
 
 	<div class="page-header">
-		<h1>{{ trans('messages.courses') }}</h1>
+		<h1>
+			{{ trans('messages.courses') }}
+			{!! link_to_route('admin.courses.create', '+', [], ['class' => 'btn btn-secondary-outline btn-sm']) !!}
+		</h1>
 	</div>
 
 	<table cellpadding="0" cellspacing="0" class="table table-hover">
@@ -39,7 +42,7 @@
 	</table>
 
 	<p>
-		{!! link_to_route('admin.courses.create', trans('messages.create-new-course'), [], ['class' => 'button']) !!}
+		{!! link_to_route('admin.courses.create', trans('messages.create-new-course'), [], ['class' => 'btn btn-primary']) !!}
 	</p>
 
 	@include ('_partials.modal.confirm-delete')
